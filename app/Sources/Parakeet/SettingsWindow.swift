@@ -6,12 +6,12 @@ import SwiftUI
 /// sample text, so changes can be seen and the box dragged into place.
 final class SettingsWindow: NSWindow, NSWindowDelegate {
     init(translator: Translator) {
-        super.init(contentRect: .init(x: 0, y: 0, width: 520, height: 640),
+        super.init(contentRect: .init(x: 0, y: 0, width: 520, height: 780),
                    styleMask: [.titled, .closable, .miniaturizable], backing: .buffered, defer: false)
         title = String(localized: "Parappa Settings")
         isReleasedWhenClosed = false
         contentViewController = NSHostingController(rootView: SettingsView(translator: translator))
-        setContentSize(.init(width: 520, height: 640))
+        setContentSize(.init(width: 520, height: 780))
         center()
         delegate = self
     }
@@ -58,6 +58,7 @@ private struct SettingsView: View {
                     Text("Lock Position")
                     Text("Clicks pass through the captions, so they can't be dragged and their buttons don't show.")
                 }
+                .accessibilityLabel(Text("Lock Position"))
                 Text("Drag the caption box to move it anywhere. While this window is open, sample captions show where it is.")
                     .font(.callout)
                     .foregroundStyle(.secondary)
@@ -93,6 +94,7 @@ private struct SettingsView: View {
                         Text("Show \(name) Speech Too")
                         Text("When off, captions hide while the speech is already in \(name).")
                     }
+                    .accessibilityLabel(Text("Show \(name) Speech Too"))
                 }
             }
 
@@ -135,7 +137,9 @@ private struct SizeSlider: View {
     var body: some View {
         LabeledContent {
             HStack(spacing: 10) {
-                Slider(value: $value, in: range, step: 1)
+                // Whole points, without a step (which draws a tick for every point).
+                Slider(value: Binding(get: { value }, set: { value = $0.rounded() }), in: range)
+                    .accessibilityLabel(Text(title))
                 Text("\(Int(value)) pt")
                     .monospacedDigit()
                     .foregroundStyle(.secondary)
