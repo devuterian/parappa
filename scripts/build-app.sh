@@ -1,33 +1,33 @@
 #!/bin/sh
-# Builds build/Parakeet.app (Apple silicon, macOS 15+). The version comes
+# Builds build/Parappa.app (Apple silicon, macOS 15+). The version comes
 # from the latest vX.Y.Z tag; the build number is the commit count.
 # Signs with $SIGN_IDENTITY, else a Developer ID certificate, else the
-# "Parakeet Self-Signed" certificate (see README), else ad-hoc.
+# "marierie Local Code Signing" certificate, else ad-hoc.
 set -eu
 root=$(cd "$(dirname "$0")/.." && pwd)
-app="$root/build/Parakeet.app"
+app="$root/build/Parappa.app"
 version=$(git -C "$root" describe --tags --abbrev=0 --match 'v*' 2>/dev/null | sed 's/^v//')
 version=${version:-0.0.0}
 build=$(git -C "$root" rev-list --count HEAD)
 identities=$(security find-identity -p codesigning)
 identity=${SIGN_IDENTITY:-$(echo "$identities" | sed -n 's/.*"\(Developer ID Application: .*\)"/\1/p' | head -1)}
-if [ -z "$identity" ] && echo "$identities" | grep -q '"Parakeet Self-Signed"'; then identity="Parakeet Self-Signed"; fi
+if [ -z "$identity" ] && echo "$identities" | grep -q '"marierie Local Code Signing"'; then identity="marierie Local Code Signing"; fi
 
 swift build -c release --arch arm64 --package-path "$root/app"
 bin=$(swift build -c release --arch arm64 --package-path "$root/app" --show-bin-path)
 
 rm -rf "$app"
 mkdir -p "$app/Contents/MacOS" "$app/Contents/Frameworks" "$app/Contents/Resources"
-cp "$bin/Parakeet" "$app/Contents/MacOS/Parakeet"
+cp "$bin/Parakeet" "$app/Contents/MacOS/Parappa"
 ditto "$bin/Sparkle.framework" "$app/Contents/Frameworks/Sparkle.framework"
 # PermissionFlow's strings, where its lookup finds them.
 ditto "$bin/PermissionFlow_PermissionFlow.bundle" "$app/Contents/Resources/PermissionFlow_PermissionFlow.bundle"
 cp "$root/app/Resources/AppIcon.icns" "$app/Contents/Resources/AppIcon.icns"
-# License notices for Parakeet and the libraries built into it.
+# License notices for Parappa, Parakeet (which it is forked from) and the libraries built into it.
 licenses="$app/Contents/Resources/Licenses"
 checkouts="$root/app/.build/checkouts"
 mkdir -p "$licenses"
-cp "$root/LICENSE" "$licenses/Parakeet.txt"
+cp "$root/LICENSE" "$licenses/Parappa.txt"
 cp "$checkouts/FluidAudio/LICENSE" "$licenses/FluidAudio.txt"
 cp "$checkouts/FluidAudio/ThirdPartyLicenses/"* "$licenses/"
 cp "$checkouts/Sparkle/LICENSE" "$licenses/Sparkle.txt"
@@ -43,11 +43,11 @@ cat > "$app/Contents/Info.plist" <<PLIST
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>CFBundleIdentifier</key><string>plus.lost.parakeet</string>
+  <key>CFBundleIdentifier</key><string>com.marierie.parappa</string>
   <key>CFBundleDevelopmentRegion</key><string>en</string>
-  <key>CFBundleName</key><string>Parakeet</string>
-  <key>CFBundleDisplayName</key><string>Parakeet</string>
-  <key>CFBundleExecutable</key><string>Parakeet</string>
+  <key>CFBundleName</key><string>Parappa</string>
+  <key>CFBundleDisplayName</key><string>Parappa</string>
+  <key>CFBundleExecutable</key><string>Parappa</string>
   <key>CFBundleIconFile</key><string>AppIcon</string>
   <key>CFBundlePackageType</key><string>APPL</string>
   <key>CFBundleShortVersionString</key><string>$version</string>
@@ -55,10 +55,10 @@ cat > "$app/Contents/Info.plist" <<PLIST
   <key>LSMinimumSystemVersion</key><string>15.0</string>
   <key>LSUIElement</key><true/>
   <key>LSApplicationCategoryType</key><string>public.app-category.utilities</string>
-  <key>NSHumanReadableCopyright</key><string>© 2026 LPFchan</string>
-  <key>NSAudioCaptureUsageDescription</key><string>Parakeet listens to system audio to show live captions. Audio never leaves this Mac.</string>
-  <key>SUFeedURL</key><string>https://parakeet.lost.plus/appcast.xml</string>
-  <key>SUPublicEDKey</key><string>bQtN+t2++IUhG6RJr/kCBTkEHRORYjUZnCcwplEwn+A=</string>
+  <key>NSHumanReadableCopyright</key><string>© 2026 marierie. Based on Parakeet © 2026 LPFchan.</string>
+  <key>NSAudioCaptureUsageDescription</key><string>Parappa listens to system audio to show live captions. Audio never leaves this Mac.</string>
+  <key>SUFeedURL</key><string>https://raw.githubusercontent.com/devuterian/parappa/main/docs/appcast.xml</string>
+  <key>SUPublicEDKey</key><string>GS1gXNNfpAdwZJm39jmqQebwhO19xpouE5RSlKf6Lz8=</string>
   <key>SUEnableAutomaticChecks</key><true/>
 </dict>
 </plist>

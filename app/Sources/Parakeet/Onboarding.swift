@@ -1,7 +1,7 @@
 import AppKit
 import SwiftUI
 
-/// First-launch wizard: what Parakeet does, the audio permission, the model
+/// First-launch wizard: what Parappa does, the audio permission, the model
 /// download, Screen Recording for ⇧⌘1 (optional), and where to find it afterwards.
 @Observable
 final class Onboarding {
@@ -14,7 +14,7 @@ final class Onboarding {
     var openAtLogin = true
     var screenAllowed = CGPreflightScreenCaptureAccess()  // kept current by ScreenStep
     @ObservationIgnored var onFinish: () -> Void = {}
-    /// Saves what's been set up so far, before macOS may ask to quit and reopen Parakeet.
+    /// Saves what's been set up so far, before macOS may ask to quit and reopen Parappa.
     @ObservationIgnored var onScreenRecording: () -> Void = {}
     @ObservationIgnored var onRetry: () -> Void = {}
 }
@@ -175,7 +175,7 @@ private struct WelcomeStep: View {
     var body: some View {
         VStack(spacing: 26) {
             Image(nsImage: NSApp.applicationIconImage).resizable().frame(width: 84, height: 84)
-            Header(title: "Welcome to Parakeet", subtitle: "Live captions for everything your Mac plays.")
+            Header(title: "Welcome to Parappa", subtitle: "Live captions for everything your Mac plays.")
             VStack(spacing: 14) {
                 CaptionPreview()
                 Note("Runs on your Mac. Audio never leaves it.")
@@ -227,14 +227,14 @@ private struct PermissionStep: View {
     var body: some View {
         VStack(spacing: 26) {
             Symbol("speaker.wave.2.bubble.fill")
-            Header(title: "Let Parakeet hear your Mac",
-                   subtitle: "Parakeet captions what your Mac plays. It doesn't use your microphone, and audio is turned into text right here, never recorded or sent anywhere.")
+            Header(title: "Let Parappa hear your Mac",
+                   subtitle: "Parappa captions what your Mac plays. It doesn't use your microphone, and audio is turned into text right here, never recorded or sent anywhere.")
             Group {
                 switch onboarding.permission {
                 case .allowed:
                     Label("Audio access allowed", systemImage: "checkmark.circle.fill").foregroundStyle(green)
                 case .denied:
-                    Text("Audio access is off. Open System Settings and turn on Parakeet.")
+                    Text("Audio access is off. Open System Settings and turn on Parappa.")
                         .foregroundStyle(.secondary)
                 case .unknown:
                     Text("macOS will ask you to confirm.").foregroundStyle(.secondary)
@@ -258,7 +258,7 @@ private struct ModelStep: View {
         VStack(spacing: 26) {
             Symbol("cpu")
             Header(title: "Setting up the speech model",
-                   subtitle: "Parakeet downloads its speech model once (about 640 MB), then prepares it for your Mac's Neural Engine.")
+                   subtitle: "Parappa downloads its speech model once (about 640 MB), then prepares it for your Mac's Neural Engine.")
             VStack(spacing: 12) {
                 switch state {
                 case .waiting:
@@ -301,7 +301,7 @@ private struct DoneStep: View {
                         .font(.system(size: 15))
                         .frame(width: 48, height: 26)  // both badges one size, so the tips line up
                         .background(.secondary.opacity(0.15), in: .rect(cornerRadius: 6))
-                    Text("Parakeet lives in the menu bar. Click it to turn captions off (⌘L) or copy the transcript.")
+                    Text("Parappa lives in the menu bar. Click it to turn captions off (⌘L) or copy the transcript.")
                         .font(.system(size: 14))
                         .foregroundStyle(.secondary)
                 }
@@ -317,7 +317,7 @@ private struct DoneStep: View {
                 }
                 .frame(maxWidth: 440, alignment: .leading)
             }
-            Toggle("Open Parakeet when I log in", isOn: $openAtLogin)
+            Toggle("Open Parappa when I log in", isOn: $openAtLogin)
                 .toggleStyle(.switch)
                 .tint(green)
                 .font(.system(size: 14, weight: .medium))
@@ -326,7 +326,7 @@ private struct DoneStep: View {
 }
 
 /// ⇧⌘1 needs Screen Recording; it's optional, and asked here only after the
-/// model is in, since macOS may ask to quit and reopen Parakeet to apply it.
+/// model is in, since macOS may ask to quit and reopen Parappa to apply it.
 private struct ScreenStep: View {
     let onboarding: Onboarding
 
@@ -334,12 +334,12 @@ private struct ScreenStep: View {
         VStack(spacing: 26) {
             Symbol("text.viewfinder")
             Header(title: "Translate what's on screen",
-                   subtitle: "Press ⇧⌘1 and Parakeet reads the text on your screen and translates it right where it is, on this Mac. Nothing is recorded or sent anywhere.")
+                   subtitle: "Press ⇧⌘1 and Parappa reads the text on your screen and translates it right where it is, on this Mac. Nothing is recorded or sent anywhere.")
             Group {
                 if onboarding.screenAllowed {
                     Label("Screen Recording allowed", systemImage: "checkmark.circle.fill").foregroundStyle(green)
                 } else {
-                    Text("Drag Parakeet into the list, or turn it on there. If macOS asks to quit and reopen Parakeet, go ahead.")
+                    Text("Drag Parappa into the list, or turn it on there. If macOS asks to quit and reopen Parappa, go ahead.")
                         .foregroundStyle(.secondary)
                 }
             }

@@ -1,5 +1,5 @@
 #!/bin/sh
-# Packs build/Parakeet.app into build/Parakeet.dmg with DMGMaker
+# Packs build/Parappa.app into build/Parappa.dmg with DMGMaker
 # (https://github.com/saihgupr/DMGMaker, pinned) and our background.
 # Packaging/DMGMaker-v1.0.3.patch adds the --background option, as in Markfops.
 set -eu
@@ -9,8 +9,8 @@ if [ ! -d "$tool" ]; then
     git clone -q --depth 1 --branch v1.0.3 https://github.com/saihgupr/DMGMaker "$tool" 2>/dev/null
     git -C "$tool" apply --unidiff-zero "$root/Packaging/DMGMaker-v1.0.3.patch"
 fi
-rm -f "$root/build/Parakeet.dmg"
-(cd "$tool" && swift run -c release "DMG Maker" --app "$root/build/Parakeet.app" --name Parakeet \
+rm -f "$root/build/Parappa.dmg"
+(cd "$tool" && swift run -c release "DMG Maker" --app "$root/build/Parappa.app" --name Parappa \
     --background "$root/Packaging/DMGBackground.png")
-test -f "$root/build/Parakeet.dmg"
-echo "$root/build/Parakeet.dmg"
+test -f "$root/build/Parappa.dmg"
+echo "$root/build/Parappa.dmg"

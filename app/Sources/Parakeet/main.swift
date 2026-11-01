@@ -4,11 +4,11 @@ import Sparkle
 import SwiftUI
 import Translation
 
-/// `Parakeet <command>` talks to the running app over distributed notifications.
+/// `Parappa <command>` talks to the running app over distributed notifications.
 enum Control {
-    static let command = Notification.Name("plus.lost.parakeet.command")
-    static let reply = Notification.Name("plus.lost.parakeet.status")
-    static let usage = "usage: Parakeet status | captions on|off"
+    static let command = Notification.Name("com.marierie.parappa.command")
+    static let reply = Notification.Name("com.marierie.parappa.status")
+    static let usage = "usage: Parappa status | captions on|off"
 }
 
 /// Which speech model to run: the default Nemotron streaming ASR, or
@@ -60,11 +60,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private var listening = false
     private var rehearse = false
 
-    /// What the menu and `Parakeet status` show; a revoked permission explains
+    /// What the menu and `Parappa status` show; a revoked permission explains
     /// why nothing is being captioned.
     private var statusLine: String {
         listening && AudioPermission.status == .denied
-            ? String(localized: "Audio access is off. Open System Settings and turn on Parakeet.") : status
+            ? String(localized: "Audio access is off. Open System Settings and turn on Parappa.") : status
     }
 
     private var engineTag: String {
@@ -80,7 +80,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         menu.delegate = self
         statusItem.menu = menu
         updateIcon()
-        // `open Parakeet.app --args --rehearse-first-launch` replays what a new user sees.
+        // `open Parappa.app --args --rehearse-first-launch` replays what a new user sees.
         rehearse = CommandLine.arguments.contains("--rehearse-first-launch")
         if rehearse || !UserDefaults.standard.bool(forKey: "onboarded") { showOnboarding() }
         startEngine()
@@ -108,7 +108,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         let window = OnboardingWindow(onboarding)
         onboarding.onFinish = { [weak self] in self?.finishOnboarding() }
         onboarding.onRetry = { [weak self] in self?.startEngine() }
-        // If macOS quits and reopens Parakeet to apply Screen Recording, it comes back set up.
+        // If macOS quits and reopens Parappa to apply Screen Recording, it comes back set up.
         // (Open at Login waits for the page that shows its switch.)
         onboarding.onScreenRecording = { [rehearse] in if !rehearse { UserDefaults.standard.set(true, forKey: "onboarded") } }
         self.onboarding = onboarding
@@ -167,7 +167,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         let update = menu.addItem(withTitle: String(localized: "Check for Updates…"), action: #selector(SPUStandardUpdaterController.checkForUpdates(_:)), keyEquivalent: "")
         update.target = updater
         menu.addItem(.separator())
-        menu.addItem(withTitle: String(localized: "Quit Parakeet"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        menu.addItem(withTitle: String(localized: "Quit Parappa"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
     }
 
     private func handle(_ event: EngineEvent) {
@@ -273,7 +273,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     private func updateIcon() {
         let name = listening ? "captions.bubble.fill" : "captions.bubble"
-        statusItem.button?.image = NSImage(systemSymbolName: name, accessibilityDescription: "Parakeet")
+        statusItem.button?.image = NSImage(systemSymbolName: name, accessibilityDescription: "Parappa")
     }
 }
 
@@ -312,11 +312,11 @@ if let first = commands.first, ["status", "captions"].contains(first) {
         exit(0)
     }
     DistributedNotificationCenter.default().postNotificationName(Control.command, object: command, userInfo: nil, deliverImmediately: true)
-    DispatchQueue.main.asyncAfter(deadline: .now() + 2) { print("Parakeet isn't running"); exit(1) }
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2) { print("Parappa isn't running"); exit(1) }
     RunLoop.main.run()
 }
 
-// `Parakeet --bench file.wav` plays a 16 kHz float32 WAV into the engine in
+// `Parappa --bench file.wav` plays a 16 kHz float32 WAV into the engine in
 // real time and prints what it heard and the CPU time it took.
 if commands.count == 2, commands[0] == "--bench" {
     let data = try! Data(contentsOf: URL(fileURLWithPath: commands[1]))
@@ -371,7 +371,7 @@ if commands.count == 2, commands[0] == "--bench" {
     RunLoop.main.run()
 }
 
-// `Parakeet --snap in.png out.png [language]` reads and translates an image
+// `Parappa --snap in.png out.png [language]` reads and translates an image
 // as ⇧⌘1 does the screen, and writes it out with every translation laid in.
 if commands.count >= 3, commands[0] == "--snap" {
     guard let source = NSImage(contentsOfFile: commands[1])?.cgImage(forProposedRect: nil, context: nil, hints: nil) else {

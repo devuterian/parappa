@@ -1033,174 +1033,174 @@
         }
       }
     },
-    "Welcome to Parakeet": {
+    "Welcome to Parappa": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "مرحبًا بك في Parakeet"
+            "value": "مرحبًا بك في Parappa"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Добре дошли в Parakeet"
+            "value": "Добре дошли в Parappa"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vítá vás Parakeet"
+            "value": "Vítá vás Parappa"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Velkommen til Parakeet"
+            "value": "Velkommen til Parappa"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Willkommen bei Parakeet"
+            "value": "Willkommen bei Parappa"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Te damos la bienvenida a Parakeet"
+            "value": "Te damos la bienvenida a Parappa"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tere tulemast Parakeeti"
+            "value": "Tere tulemast Parappai"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tervetuloa Parakeetiin"
+            "value": "Tervetuloa Parappaiin"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bienvenue dans Parakeet"
+            "value": "Bienvenue dans Parappa"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet में आपका स्वागत है"
+            "value": "Parappa में आपका स्वागत है"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dobro došli u Parakeet"
+            "value": "Dobro došli u Parappa"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Üdvözöl a Parakeet"
+            "value": "Üdvözöl a Parappa"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Benvenuto in Parakeet"
+            "value": "Benvenuto in Parappa"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeetへようこそ"
+            "value": "Parappaへようこそ"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet에 오신 것을 환영합니다"
+            "value": "Parappa에 오신 것을 환영합니다"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Velkommen til Parakeet"
+            "value": "Velkommen til Parappa"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Welkom bij Parakeet"
+            "value": "Welkom bij Parappa"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Witaj w Parakeet"
+            "value": "Witaj w Parappa"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Boas-vindas ao Parakeet"
+            "value": "Boas-vindas ao Parappa"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bem-vindo ao Parakeet"
+            "value": "Bem-vindo ao Parappa"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bun venit în Parakeet"
+            "value": "Bun venit în Parappa"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Добро пожаловать в Parakeet"
+            "value": "Добро пожаловать в Parappa"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vitajte v Parakeet"
+            "value": "Vitajte v Parappa"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Välkommen till Parakeet"
+            "value": "Välkommen till Parappa"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet'e hoş geldiniz"
+            "value": "Parappa'e hoş geldiniz"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Вітаємо в Parakeet"
+            "value": "Вітаємо в Parappa"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chào mừng bạn đến với Parakeet"
+            "value": "Chào mừng bạn đến với Parappa"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "欢迎使用 Parakeet"
+            "value": "欢迎使用 Parappa"
           }
         }
       }
@@ -1549,346 +1549,346 @@
         }
       }
     },
-    "Let Parakeet hear your Mac": {
+    "Let Parappa hear your Mac": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "اسمح لـ Parakeet بسماع جهاز Mac"
+            "value": "اسمح لـ Parappa بسماع جهاز Mac"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Позволете на Parakeet да чува вашия Mac"
+            "value": "Позволете на Parappa да чува вашия Mac"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nechte Parakeet poslouchat váš Mac"
+            "value": "Nechte Parappa poslouchat váš Mac"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lad Parakeet høre din Mac"
+            "value": "Lad Parappa høre din Mac"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lass Parakeet deinen Mac hören"
+            "value": "Lass Parappa deinen Mac hören"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deja que Parakeet escuche tu Mac"
+            "value": "Deja que Parappa escuche tu Mac"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Luba Parakeetil su Maci kuulda"
+            "value": "Luba Parappail su Maci kuulda"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Anna Parakeetin kuulla Macisi"
+            "value": "Anna Parappain kuulla Macisi"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Laissez Parakeet écouter votre Mac"
+            "value": "Laissez Parappa écouter votre Mac"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet को अपने Mac की आवाज़ सुनने दें"
+            "value": "Parappa को अपने Mac की आवाज़ सुनने दें"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dopustite Parakeetu da čuje vaš Mac"
+            "value": "Dopustite Parappau da čuje vaš Mac"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Engedd, hogy a Parakeet hallja a Maced"
+            "value": "Engedd, hogy a Parappa hallja a Maced"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Fai ascoltare il tuo Mac a Parakeet"
+            "value": "Fai ascoltare il tuo Mac a Parappa"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ParakeetにMacの音を聞かせてください"
+            "value": "ParappaにMacの音を聞かせてください"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet이 Mac의 소리를 들을 수 있게 해주세요"
+            "value": "Parappa가 Mac의 소리를 들을 수 있게 해주세요"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "La Parakeet høre Macen din"
+            "value": "La Parappa høre Macen din"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Laat Parakeet je Mac horen"
+            "value": "Laat Parappa je Mac horen"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pozwól Parakeet słyszeć Twojego Maca"
+            "value": "Pozwól Parappa słyszeć Twojego Maca"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deixe o Parakeet ouvir o seu Mac"
+            "value": "Deixe o Parappa ouvir o seu Mac"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deixe o Parakeet ouvir o seu Mac"
+            "value": "Deixe o Parappa ouvir o seu Mac"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lasă Parakeet să audă Mac-ul tău"
+            "value": "Lasă Parappa să audă Mac-ul tău"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Позвольте Parakeet слышать ваш Mac"
+            "value": "Позвольте Parappa слышать ваш Mac"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nechajte Parakeet počúvať váš Mac"
+            "value": "Nechajte Parappa počúvať váš Mac"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Låt Parakeet höra din Mac"
+            "value": "Låt Parappa höra din Mac"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet'in Mac'inizi duymasına izin verin"
+            "value": "Parappa'in Mac'inizi duymasına izin verin"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Дозвольте Parakeet чути ваш Mac"
+            "value": "Дозвольте Parappa чути ваш Mac"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cho phép Parakeet nghe máy Mac của bạn"
+            "value": "Cho phép Parappa nghe máy Mac của bạn"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "让 Parakeet 听到你的 Mac"
+            "value": "让 Parappa 听到你的 Mac"
           }
         }
       }
     },
-    "Parakeet captions what your Mac plays. It doesn't use your microphone, and audio is turned into text right here, never recorded or sent anywhere.": {
+    "Parappa captions what your Mac plays. It doesn't use your microphone, and audio is turned into text right here, never recorded or sent anywhere.": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يعرض Parakeet ترجمة نصية لما يشغّله جهاز Mac. لا يستخدم الميكروفون، ويتحول الصوت إلى نص هنا مباشرة، دون أن يُسجَّل أو يُرسل إلى أي مكان."
+            "value": "يعرض Parappa ترجمة نصية لما يشغّله جهاز Mac. لا يستخدم الميكروفون، ويتحول الصوت إلى نص هنا مباشرة، دون أن يُسجَّل أو يُرسل إلى أي مكان."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet създава субтитри за това, което възпроизвежда вашият Mac. Не използва микрофона, а звукът се превръща в текст точно тук – никога не се записва и не се изпраща никъде."
+            "value": "Parappa създава субтитри за това, което възпроизвежда вашият Mac. Не използва микрофона, а звукът се превръща в текст точно тук – никога не се записва и не се изпраща никъде."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet vytváří titulky k tomu, co váš Mac přehrává. Nepoužívá mikrofon a zvuk se převádí na text přímo tady – nikdy se nenahrává ani nikam neodesílá."
+            "value": "Parappa vytváří titulky k tomu, co váš Mac přehrává. Nepoužívá mikrofon a zvuk se převádí na text přímo tady – nikdy se nenahrává ani nikam neodesílá."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet laver undertekster til det, din Mac afspiller. Den bruger ikke din mikrofon, og lyden omdannes til tekst lige her – den optages aldrig og sendes ingen steder hen."
+            "value": "Parappa laver undertekster til det, din Mac afspiller. Den bruger ikke din mikrofon, og lyden omdannes til tekst lige her – den optages aldrig og sendes ingen steder hen."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet untertitelt, was dein Mac abspielt. Das Mikrofon wird nicht verwendet, und Audio wird direkt hier in Text umgewandelt – nie aufgenommen oder irgendwohin gesendet."
+            "value": "Parappa untertitelt, was dein Mac abspielt. Das Mikrofon wird nicht verwendet, und Audio wird direkt hier in Text umgewandelt – nie aufgenommen oder irgendwohin gesendet."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet subtitula lo que reproduce tu Mac. No usa tu micrófono, y el audio se convierte en texto aquí mismo, sin grabarse ni enviarse a ningún sitio."
+            "value": "Parappa subtitula lo que reproduce tu Mac. No usa tu micrófono, y el audio se convierte en texto aquí mismo, sin grabarse ni enviarse a ningún sitio."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet loob subtiitrid sellele, mida su Mac esitab. See ei kasuta mikrofoni ning heli muudetakse tekstiks otse siin – seda ei salvestata ega saadeta kuhugi."
+            "value": "Parappa loob subtiitrid sellele, mida su Mac esitab. See ei kasuta mikrofoni ning heli muudetakse tekstiks otse siin – seda ei salvestata ega saadeta kuhugi."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet tekstittää sen, mitä Macisi toistaa. Se ei käytä mikrofonia, ja ääni muutetaan tekstiksi tässä ja nyt – sitä ei koskaan tallenneta eikä lähetetä minnekään."
+            "value": "Parappa tekstittää sen, mitä Macisi toistaa. Se ei käytä mikrofonia, ja ääni muutetaan tekstiksi tässä ja nyt – sitä ei koskaan tallenneta eikä lähetetä minnekään."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet sous-titre ce que joue votre Mac. Il n'utilise pas votre micro : l'audio est converti en texte ici même, sans jamais être enregistré ni envoyé où que ce soit."
+            "value": "Parappa sous-titre ce que joue votre Mac. Il n'utilise pas votre micro : l'audio est converti en texte ici même, sans jamais être enregistré ni envoyé où que ce soit."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet आपके Mac पर चल रही चीज़ों के कैप्शन बनाता है। यह आपका माइक्रोफ़ोन इस्तेमाल नहीं करता, और ऑडियो यहीं टेक्स्ट में बदला जाता है — न कभी रिकॉर्ड होता है, न कहीं भेजा जाता है।"
+            "value": "Parappa आपके Mac पर चल रही चीज़ों के कैप्शन बनाता है। यह आपका माइक्रोफ़ोन इस्तेमाल नहीं करता, और ऑडियो यहीं टेक्स्ट में बदला जाता है — न कभी रिकॉर्ड होता है, न कहीं भेजा जाता है।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet titlira ono što vaš Mac reproducira. Ne koristi mikrofon, a zvuk se pretvara u tekst upravo ovdje – nikad se ne snima niti šalje bilo kamo."
+            "value": "Parappa titlira ono što vaš Mac reproducira. Ne koristi mikrofon, a zvuk se pretvara u tekst upravo ovdje – nikad se ne snima niti šalje bilo kamo."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A Parakeet feliratozza, amit a Maced lejátszik. Nem használja a mikrofont, a hang itt helyben alakul szöveggé – soha nem kerül rögzítésre, és sehova sem küldi el."
+            "value": "A Parappa feliratozza, amit a Maced lejátszik. Nem használja a mikrofont, a hang itt helyben alakul szöveggé – soha nem kerül rögzítésre, és sehova sem küldi el."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet sottotitola ciò che riproduce il tuo Mac. Non usa il microfono: l'audio viene trasformato in testo direttamente qui, senza mai essere registrato o inviato altrove."
+            "value": "Parappa sottotitola ciò che riproduce il tuo Mac. Non usa il microfono: l'audio viene trasformato in testo direttamente qui, senza mai essere registrato o inviato altrove."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ParakeetはMacで再生される音声に字幕を付けます。マイクは使用しません。音声はこのMac上でテキストに変換され、録音も送信もされません。"
+            "value": "ParappaはMacで再生される音声に字幕を付けます。マイクは使用しません。音声はこのMac上でテキストに変換され、録音も送信もされません。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet은 Mac에서 재생되는 소리에 자막을 붙입니다. 마이크는 사용하지 않으며, 오디오는 이 Mac에서 바로 텍스트로 바뀔 뿐 녹음되거나 어디로도 전송되지 않습니다."
+            "value": "Parappa는 Mac에서 재생되는 소리에 자막을 붙입니다. 마이크는 사용하지 않으며, 오디오는 이 Mac에서 바로 텍스트로 바뀔 뿐 녹음되거나 어디로도 전송되지 않습니다."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet tekster det Macen din spiller av. Mikrofonen brukes ikke, og lyden gjøres om til tekst her og nå – den tas aldri opp eller sendes noe sted."
+            "value": "Parappa tekster det Macen din spiller av. Mikrofonen brukes ikke, og lyden gjøres om til tekst her og nå – den tas aldri opp eller sendes noe sted."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet ondertitelt wat je Mac afspeelt. Je microfoon wordt niet gebruikt en audio wordt hier ter plekke omgezet in tekst, nooit opgenomen of ergens naartoe gestuurd."
+            "value": "Parappa ondertitelt wat je Mac afspeelt. Je microfoon wordt niet gebruikt en audio wordt hier ter plekke omgezet in tekst, nooit opgenomen of ergens naartoe gestuurd."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet tworzy napisy do tego, co odtwarza Twój Mac. Nie korzysta z mikrofonu, a dźwięk jest zamieniany na tekst tutaj, na miejscu – nigdy nie jest nagrywany ani nigdzie wysyłany."
+            "value": "Parappa tworzy napisy do tego, co odtwarza Twój Mac. Nie korzysta z mikrofonu, a dźwięk jest zamieniany na tekst tutaj, na miejscu – nigdy nie jest nagrywany ani nigdzie wysyłany."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Parakeet legenda o que o seu Mac reproduz. Ele não usa o microfone, e o áudio é convertido em texto aqui mesmo, nunca gravado nem enviado a lugar nenhum."
+            "value": "O Parappa legenda o que o seu Mac reproduz. Ele não usa o microfone, e o áudio é convertido em texto aqui mesmo, nunca gravado nem enviado a lugar nenhum."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Parakeet legenda o que o Mac reproduz. Não usa o microfone, e o áudio é convertido em texto aqui mesmo, nunca gravado nem enviado para lado nenhum."
+            "value": "O Parappa legenda o que o Mac reproduz. Não usa o microfone, e o áudio é convertido em texto aqui mesmo, nunca gravado nem enviado para lado nenhum."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet subtitrează ce redă Mac-ul tău. Nu folosește microfonul, iar sunetul este transformat în text chiar aici – nu este niciodată înregistrat sau trimis undeva."
+            "value": "Parappa subtitrează ce redă Mac-ul tău. Nu folosește microfonul, iar sunetul este transformat în text chiar aici – nu este niciodată înregistrat sau trimis undeva."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet создает субтитры к тому, что воспроизводит ваш Mac. Микрофон не используется, а звук превращается в текст прямо здесь — он никогда не записывается и никуда не отправляется."
+            "value": "Parappa создает субтитры к тому, что воспроизводит ваш Mac. Микрофон не используется, а звук превращается в текст прямо здесь — он никогда не записывается и никуда не отправляется."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet vytvára titulky k tomu, čo prehráva váš Mac. Nepoužíva mikrofón a zvuk sa mení na text priamo tu – nikdy sa nenahráva ani nikam neposiela."
+            "value": "Parappa vytvára titulky k tomu, čo prehráva váš Mac. Nepoužíva mikrofón a zvuk sa mení na text priamo tu – nikdy sa nenahráva ani nikam neposiela."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet textar det som din Mac spelar upp. Mikrofonen används inte, och ljudet omvandlas till text här och nu – det spelas aldrig in eller skickas någonstans."
+            "value": "Parappa textar det som din Mac spelar upp. Mikrofonen används inte, och ljudet omvandlas till text här och nu – det spelas aldrig in eller skickas någonstans."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet, Mac'inizde çalanları altyazıya dönüştürür. Mikrofonunuzu kullanmaz; ses tam burada metne dönüştürülür, asla kaydedilmez veya bir yere gönderilmez."
+            "value": "Parappa, Mac'inizde çalanları altyazıya dönüştürür. Mikrofonunuzu kullanmaz; ses tam burada metne dönüştürülür, asla kaydedilmez veya bir yere gönderilmez."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet створює субтитри до того, що відтворює ваш Mac. Мікрофон не використовується, а звук перетворюється на текст просто тут — він ніколи не записується й нікуди не надсилається."
+            "value": "Parappa створює субтитри до того, що відтворює ваш Mac. Мікрофон не використовується, а звук перетворюється на текст просто тут — він ніколи не записується й нікуди не надсилається."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet tạo phụ đề cho những gì máy Mac của bạn phát. Ứng dụng không dùng micrô, âm thanh được chuyển thành văn bản ngay tại đây, không bao giờ được ghi lại hay gửi đi đâu cả."
+            "value": "Parappa tạo phụ đề cho những gì máy Mac của bạn phát. Ứng dụng không dùng micrô, âm thanh được chuyển thành văn bản ngay tại đây, không bao giờ được ghi lại hay gửi đi đâu cả."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet 为 Mac 播放的内容生成字幕。它不会使用你的麦克风，音频就在这台 Mac 上转换为文字，从不录制，也不会发送到任何地方。"
+            "value": "Parappa 为 Mac 播放的内容生成字幕。它不会使用你的麦克风，音频就在这台 Mac 上转换为文字，从不录制，也不会发送到任何地方。"
           }
         }
       }
@@ -2065,174 +2065,174 @@
         }
       }
     },
-    "Audio access is off. Open System Settings and turn on Parakeet.": {
+    "Audio access is off. Open System Settings and turn on Parappa.": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "الوصول إلى الصوت متوقف. افتح إعدادات النظام وشغّل Parakeet."
+            "value": "الوصول إلى الصوت متوقف. افتح إعدادات النظام وشغّل Parappa."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Достъпът до звука е изключен. Отворете Системни настройки и включете Parakeet."
+            "value": "Достъпът до звука е изключен. Отворете Системни настройки и включете Parappa."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Přístup ke zvuku je vypnutý. Otevřete Nastavení systému a zapněte Parakeet."
+            "value": "Přístup ke zvuku je vypnutý. Otevřete Nastavení systému a zapněte Parappa."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lydadgang er slået fra. Åbn Systemindstillinger, og slå Parakeet til."
+            "value": "Lydadgang er slået fra. Åbn Systemindstillinger, og slå Parappa til."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Der Audiozugriff ist aus. Öffne die Systemeinstellungen und aktiviere Parakeet."
+            "value": "Der Audiozugriff ist aus. Öffne die Systemeinstellungen und aktiviere Parappa."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "El acceso al audio está desactivado. Abre Ajustes del Sistema y activa Parakeet."
+            "value": "El acceso al audio está desactivado. Abre Ajustes del Sistema y activa Parappa."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Juurdepääs helile on välja lülitatud. Ava Süsteemiseaded ja lülita Parakeet sisse."
+            "value": "Juurdepääs helile on välja lülitatud. Ava Süsteemiseaded ja lülita Parappa sisse."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Äänen käyttö on pois päältä. Avaa Järjestelmäasetukset ja laita Parakeet päälle."
+            "value": "Äänen käyttö on pois päältä. Avaa Järjestelmäasetukset ja laita Parappa päälle."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "L'accès audio est désactivé. Ouvrez Réglages Système et activez Parakeet."
+            "value": "L'accès audio est désactivé. Ouvrez Réglages Système et activez Parappa."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "ऑडियो ऐक्सेस बंद है। सिस्टम सेटिंग्ज़ खोलें और Parakeet को चालू करें।"
+            "value": "ऑडियो ऐक्सेस बंद है। सिस्टम सेटिंग्ज़ खोलें और Parappa को चालू करें।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pristup zvuku je isključen. Otvorite Postavke sustava i uključite Parakeet."
+            "value": "Pristup zvuku je isključen. Otvorite Postavke sustava i uključite Parappa."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A hanghozzáférés ki van kapcsolva. Nyisd meg a Rendszerbeállításokat, és kapcsold be a Parakeetet."
+            "value": "A hanghozzáférés ki van kapcsolva. Nyisd meg a Rendszerbeállításokat, és kapcsold be a Parappaet."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "L'accesso all'audio è disattivato. Apri Impostazioni di Sistema e attiva Parakeet."
+            "value": "L'accesso all'audio è disattivato. Apri Impostazioni di Sistema e attiva Parappa."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "オーディオへのアクセスがオフです。システム設定を開いてParakeetをオンにしてください。"
+            "value": "オーディオへのアクセスがオフです。システム設定を開いてParappaをオンにしてください。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "오디오 접근이 꺼져 있습니다. 시스템 설정을 열고 Parakeet을 켜 주세요."
+            "value": "오디오 접근이 꺼져 있습니다. 시스템 설정을 열고 Parappa를 켜 주세요."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lydtilgang er slått av. Åpne Systeminnstillinger og slå på Parakeet."
+            "value": "Lydtilgang er slått av. Åpne Systeminnstillinger og slå på Parappa."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Audiotoegang staat uit. Open Systeeminstellingen en zet Parakeet aan."
+            "value": "Audiotoegang staat uit. Open Systeeminstellingen en zet Parappa aan."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dostęp do dźwięku jest wyłączony. Otwórz Ustawienia systemowe i włącz Parakeet."
+            "value": "Dostęp do dźwięku jest wyłączony. Otwórz Ustawienia systemowe i włącz Parappa."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O acesso ao áudio está desativado. Abra os Ajustes do Sistema e ative o Parakeet."
+            "value": "O acesso ao áudio está desativado. Abra os Ajustes do Sistema e ative o Parappa."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O acesso ao áudio está desativado. Abra as Definições do Sistema e ative o Parakeet."
+            "value": "O acesso ao áudio está desativado. Abra as Definições do Sistema e ative o Parappa."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Accesul la audio este dezactivat. Deschide Configurări sistem și activează Parakeet."
+            "value": "Accesul la audio este dezactivat. Deschide Configurări sistem și activează Parappa."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Доступ к звуку выключен. Откройте Системные настройки и включите Parakeet."
+            "value": "Доступ к звуку выключен. Откройте Системные настройки и включите Parappa."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Prístup k zvuku je vypnutý. Otvorte Systémové nastavenia a zapnite Parakeet."
+            "value": "Prístup k zvuku je vypnutý. Otvorte Systémové nastavenia a zapnite Parappa."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ljudåtkomsten är avstängd. Öppna Systeminställningar och slå på Parakeet."
+            "value": "Ljudåtkomsten är avstängd. Öppna Systeminställningar och slå på Parappa."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ses erişimi kapalı. Sistem Ayarları'nı açın ve Parakeet'i açın."
+            "value": "Ses erişimi kapalı. Sistem Ayarları'nı açın ve Parappa'i açın."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Доступ до звуку вимкнено. Відкрийте Системні параметри й увімкніть Parakeet."
+            "value": "Доступ до звуку вимкнено. Відкрийте Системні параметри й увімкніть Parappa."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Quyền truy cập âm thanh đang tắt. Hãy mở Cài đặt hệ thống và bật Parakeet."
+            "value": "Quyền truy cập âm thanh đang tắt. Hãy mở Cài đặt hệ thống và bật Parappa."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "音频访问已关闭。请打开系统设置并开启 Parakeet。"
+            "value": "音频访问已关闭。请打开系统设置并开启 Parappa。"
           }
         }
       }
@@ -2581,174 +2581,174 @@
         }
       }
     },
-    "Parakeet downloads its speech model once (about 640 MB), then prepares it for your Mac's Neural Engine.": {
+    "Parappa downloads its speech model once (about 640 MB), then prepares it for your Mac's Neural Engine.": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "ينزّل Parakeet نموذج الكلام مرة واحدة (نحو 640 ميغابايت)، ثم يجهّزه لمحرك Neural Engine في جهاز Mac."
+            "value": "ينزّل Parappa نموذج الكلام مرة واحدة (نحو 640 ميغابايت)، ثم يجهّزه لمحرك Neural Engine في جهاز Mac."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet изтегля говорния си модел веднъж (около 640 МБ), след което го подготвя за Neural Engine на вашия Mac."
+            "value": "Parappa изтегля говорния си модел веднъж (около 640 МБ), след което го подготвя за Neural Engine на вашия Mac."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet si jednou stáhne model řeči (asi 640 MB) a pak ho připraví pro Neural Engine ve vašem Macu."
+            "value": "Parappa si jednou stáhne model řeči (asi 640 MB) a pak ho připraví pro Neural Engine ve vašem Macu."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet henter sin talemodel én gang (ca. 640 MB) og gør den derefter klar til din Macs Neural Engine."
+            "value": "Parappa henter sin talemodel én gang (ca. 640 MB) og gør den derefter klar til din Macs Neural Engine."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet lädt sein Sprachmodell einmalig herunter (ca. 640 MB) und bereitet es dann für die Neural Engine deines Mac vor."
+            "value": "Parappa lädt sein Sprachmodell einmalig herunter (ca. 640 MB) und bereitet es dann für die Neural Engine deines Mac vor."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet descarga su modelo de voz una sola vez (unos 640 MB) y luego lo prepara para el Neural Engine de tu Mac."
+            "value": "Parappa descarga su modelo de voz una sola vez (unos 640 MB) y luego lo prepara para el Neural Engine de tu Mac."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet laadib kõnemudeli alla ühe korra (umbes 640 MB) ja valmistab selle seejärel ette su Maci Neural Engine'i jaoks."
+            "value": "Parappa laadib kõnemudeli alla ühe korra (umbes 640 MB) ja valmistab selle seejärel ette su Maci Neural Engine'i jaoks."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet lataa puhemallinsa kerran (noin 640 Mt) ja valmistelee sen sitten Macisi Neural Enginelle."
+            "value": "Parappa lataa puhemallinsa kerran (noin 640 Mt) ja valmistelee sen sitten Macisi Neural Enginelle."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet télécharge son modèle vocal une seule fois (environ 640 Mo), puis le prépare pour le Neural Engine de votre Mac."
+            "value": "Parappa télécharge son modèle vocal une seule fois (environ 640 Mo), puis le prépare pour le Neural Engine de votre Mac."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet अपना स्पीच मॉडल एक बार डाउनलोड करता है (लगभग 640 MB), फिर उसे आपके Mac के Neural Engine के लिए तैयार करता है।"
+            "value": "Parappa अपना स्पीच मॉडल एक बार डाउनलोड करता है (लगभग 640 MB), फिर उसे आपके Mac के Neural Engine के लिए तैयार करता है।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet jednom preuzima govorni model (oko 640 MB), a zatim ga priprema za Neural Engine vašeg Maca."
+            "value": "Parappa jednom preuzima govorni model (oko 640 MB), a zatim ga priprema za Neural Engine vašeg Maca."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A Parakeet egyszer letölti a beszédmodellt (kb. 640 MB), majd előkészíti a Maced Neural Engine egységére."
+            "value": "A Parappa egyszer letölti a beszédmodellt (kb. 640 MB), majd előkészíti a Maced Neural Engine egységére."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet scarica il modello vocale una sola volta (circa 640 MB), poi lo prepara per il Neural Engine del tuo Mac."
+            "value": "Parappa scarica il modello vocale una sola volta (circa 640 MB), poi lo prepara per il Neural Engine del tuo Mac."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeetは音声モデルを一度だけダウンロードし（約640 MB）、MacのNeural Engine向けに準備します。"
+            "value": "Parappaは音声モデルを一度だけダウンロードし（約640 MB）、MacのNeural Engine向けに準備します。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet은 음성 모델을 한 번만 내려받은 뒤(약 640MB), Mac의 Neural Engine에 맞게 준비합니다."
+            "value": "Parappa는 음성 모델을 한 번만 내려받은 뒤(약 640MB), Mac의 Neural Engine에 맞게 준비합니다."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet laster ned talemodellen én gang (omtrent 640 MB) og gjør den deretter klar for Neural Engine på Macen din."
+            "value": "Parappa laster ned talemodellen én gang (omtrent 640 MB) og gjør den deretter klar for Neural Engine på Macen din."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet downloadt zijn spraakmodel één keer (ongeveer 640 MB) en bereidt het daarna voor op de Neural Engine van je Mac."
+            "value": "Parappa downloadt zijn spraakmodel één keer (ongeveer 640 MB) en bereidt het daarna voor op de Neural Engine van je Mac."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet pobiera model mowy tylko raz (około 640 MB), a następnie przygotowuje go dla układu Neural Engine w Twoim Macu."
+            "value": "Parappa pobiera model mowy tylko raz (około 640 MB), a następnie przygotowuje go dla układu Neural Engine w Twoim Macu."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Parakeet baixa o modelo de fala uma única vez (cerca de 640 MB) e depois o prepara para o Neural Engine do seu Mac."
+            "value": "O Parappa baixa o modelo de fala uma única vez (cerca de 640 MB) e depois o prepara para o Neural Engine do seu Mac."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Parakeet descarrega o modelo de voz uma única vez (cerca de 640 MB) e depois prepara-o para o Neural Engine do seu Mac."
+            "value": "O Parappa descarrega o modelo de voz uma única vez (cerca de 640 MB) e depois prepara-o para o Neural Engine do seu Mac."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet descarcă modelul vocal o singură dată (aproximativ 640 MB), apoi îl pregătește pentru Neural Engine de pe Mac-ul tău."
+            "value": "Parappa descarcă modelul vocal o singură dată (aproximativ 640 MB), apoi îl pregătește pentru Neural Engine de pe Mac-ul tău."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet один раз загружает речевую модель (около 640 МБ), а затем готовит ее для Neural Engine вашего Mac."
+            "value": "Parappa один раз загружает речевую модель (около 640 МБ), а затем готовит ее для Neural Engine вашего Mac."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet si raz stiahne model reči (asi 640 MB) a potom ho pripraví pre Neural Engine vo vašom Macu."
+            "value": "Parappa si raz stiahne model reči (asi 640 MB) a potom ho pripraví pre Neural Engine vo vašom Macu."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet hämtar sin talmodell en gång (cirka 640 MB) och förbereder den sedan för din Macs Neural Engine."
+            "value": "Parappa hämtar sin talmodell en gång (cirka 640 MB) och förbereder den sedan för din Macs Neural Engine."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet konuşma modelini bir kez indirir (yaklaşık 640 MB), ardından Mac'inizin Neural Engine'i için hazırlar."
+            "value": "Parappa konuşma modelini bir kez indirir (yaklaşık 640 MB), ardından Mac'inizin Neural Engine'i için hazırlar."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet один раз завантажує мовну модель (близько 640 МБ), а потім готує її для Neural Engine вашого Mac."
+            "value": "Parappa один раз завантажує мовну модель (близько 640 МБ), а потім готує її для Neural Engine вашого Mac."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet tải mô hình giọng nói một lần (khoảng 640 MB), sau đó chuẩn bị cho Neural Engine trên máy Mac của bạn."
+            "value": "Parappa tải mô hình giọng nói một lần (khoảng 640 MB), sau đó chuẩn bị cho Neural Engine trên máy Mac của bạn."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet 只需下载一次语音模型（约 640 MB），然后为你 Mac 的神经网络引擎做好准备。"
+            "value": "Parappa 只需下载一次语音模型（约 640 MB），然后为你 Mac 的神经网络引擎做好准备。"
           }
         }
       }
@@ -3785,346 +3785,346 @@
         }
       }
     },
-    "Parakeet lives in the menu bar. Click it to turn captions off (⌘L) or copy the transcript.": {
+    "Parappa lives in the menu bar. Click it to turn captions off (⌘L) or copy the transcript.": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يوجد Parakeet في شريط القائمة. انقر عليه لإيقاف الترجمة النصية (⌘L) أو نسخ النص المفرّغ."
+            "value": "يوجد Parappa في شريط القائمة. انقر عليه لإيقاف الترجمة النصية (⌘L) أو نسخ النص المفرّغ."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet се намира в лентата с менюта. Щракнете върху него, за да изключите субтитрите (⌘L) или да копирате транскрипцията."
+            "value": "Parappa се намира в лентата с менюта. Щракнете върху него, за да изключите субтитрите (⌘L) или да копирате транскрипцията."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet najdete na řádku nabídek. Klikněte na něj a můžete vypnout titulky (⌘L) nebo zkopírovat přepis."
+            "value": "Parappa najdete na řádku nabídek. Klikněte na něj a můžete vypnout titulky (⌘L) nebo zkopírovat přepis."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet findes på menulinjen. Klik på den for at slå undertekster fra (⌘L) eller kopiere transskriptionen."
+            "value": "Parappa findes på menulinjen. Klik på den for at slå undertekster fra (⌘L) eller kopiere transskriptionen."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet befindet sich in der Menüleiste. Klicke darauf, um Untertitel auszuschalten (⌘L) oder das Transkript zu kopieren."
+            "value": "Parappa befindet sich in der Menüleiste. Klicke darauf, um Untertitel auszuschalten (⌘L) oder das Transkript zu kopieren."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet está en la barra de menús. Haz clic para desactivar los subtítulos (⌘L) o copiar la transcripción."
+            "value": "Parappa está en la barra de menús. Haz clic para desactivar los subtítulos (⌘L) o copiar la transcripción."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet asub menüüribal. Klõpsa sellel, et subtiitrid välja lülitada (⌘L) või transkriptsioon kopeerida."
+            "value": "Parappa asub menüüribal. Klõpsa sellel, et subtiitrid välja lülitada (⌘L) või transkriptsioon kopeerida."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet on valikkorivillä. Klikkaa sitä laittaaksesi tekstityksen pois (⌘L) tai kopioidaksesi litteroinnin."
+            "value": "Parappa on valikkorivillä. Klikkaa sitä laittaaksesi tekstityksen pois (⌘L) tai kopioidaksesi litteroinnin."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet se trouve dans la barre des menus. Cliquez dessus pour désactiver les sous-titres (⌘L) ou copier la transcription."
+            "value": "Parappa se trouve dans la barre des menus. Cliquez dessus pour désactiver les sous-titres (⌘L) ou copier la transcription."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet मेनू बार में रहता है। कैप्शन बंद करने (⌘L) या ट्रांसक्रिप्ट कॉपी करने के लिए उस पर क्लिक करें।"
+            "value": "Parappa मेनू बार में रहता है। कैप्शन बंद करने (⌘L) या ट्रांसक्रिप्ट कॉपी करने के लिए उस पर क्लिक करें।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet se nalazi na traci s izbornicima. Kliknite ga da biste isključili titlove (⌘L) ili kopirali transkript."
+            "value": "Parappa se nalazi na traci s izbornicima. Kliknite ga da biste isključili titlove (⌘L) ili kopirali transkript."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A Parakeet a menüsorban található. Kattints rá a feliratok kikapcsolásához (⌘L) vagy az átirat másolásához."
+            "value": "A Parappa a menüsorban található. Kattints rá a feliratok kikapcsolásához (⌘L) vagy az átirat másolásához."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet si trova nella barra dei menu. Fai clic per disattivare i sottotitoli (⌘L) o copiare la trascrizione."
+            "value": "Parappa si trova nella barra dei menu. Fai clic per disattivare i sottotitoli (⌘L) o copiare la trascrizione."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeetはメニューバーにあります。クリックすると字幕をオフにしたり（⌘L）、書き起こしをコピーしたりできます。"
+            "value": "Parappaはメニューバーにあります。クリックすると字幕をオフにしたり（⌘L）、書き起こしをコピーしたりできます。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet은 메뉴 막대에 있습니다. 클릭해서 자막을 끄거나(⌘L) 대본을 복사할 수 있어요."
+            "value": "Parappa는 메뉴 막대에 있습니다. 클릭해서 자막을 끄거나(⌘L) 대본을 복사할 수 있어요."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet ligger i menylinjen. Klikk på den for å slå av teksting (⌘L) eller kopiere transkripsjonen."
+            "value": "Parappa ligger i menylinjen. Klikk på den for å slå av teksting (⌘L) eller kopiere transkripsjonen."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet staat in de menubalk. Klik erop om ondertiteling uit te zetten (⌘L) of het transcript te kopiëren."
+            "value": "Parappa staat in de menubalk. Klik erop om ondertiteling uit te zetten (⌘L) of het transcript te kopiëren."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet znajduje się na pasku menu. Kliknij go, aby wyłączyć napisy (⌘L) lub skopiować transkrypcję."
+            "value": "Parappa znajduje się na pasku menu. Kliknij go, aby wyłączyć napisy (⌘L) lub skopiować transkrypcję."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Parakeet fica na barra de menus. Clique nele para desativar as legendas (⌘L) ou copiar a transcrição."
+            "value": "O Parappa fica na barra de menus. Clique nele para desativar as legendas (⌘L) ou copiar a transcrição."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "O Parakeet está na barra de menus. Clique nele para desativar as legendas (⌘L) ou copiar a transcrição."
+            "value": "O Parappa está na barra de menus. Clique nele para desativar as legendas (⌘L) ou copiar a transcrição."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet se află în bara de meniu. Fă clic pe el pentru a dezactiva subtitrările (⌘L) sau pentru a copia transcrierea."
+            "value": "Parappa se află în bara de meniu. Fă clic pe el pentru a dezactiva subtitrările (⌘L) sau pentru a copia transcrierea."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet находится в строке меню. Нажмите на него, чтобы выключить субтитры (⌘L) или скопировать расшифровку."
+            "value": "Parappa находится в строке меню. Нажмите на него, чтобы выключить субтитры (⌘L) или скопировать расшифровку."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet nájdete na lište ponuky. Kliknutím naň môžete vypnúť titulky (⌘L) alebo skopírovať prepis."
+            "value": "Parappa nájdete na lište ponuky. Kliknutím naň môžete vypnúť titulky (⌘L) alebo skopírovať prepis."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet finns i menyraden. Klicka på den för att stänga av undertexter (⌘L) eller kopiera transkriptionen."
+            "value": "Parappa finns i menyraden. Klicka på den för att stänga av undertexter (⌘L) eller kopiera transkriptionen."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet menü çubuğunda bulunur. Altyazıları kapatmak (⌘L) veya dökümü kopyalamak için tıklayın."
+            "value": "Parappa menü çubuğunda bulunur. Altyazıları kapatmak (⌘L) veya dökümü kopyalamak için tıklayın."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet розташований у смузі меню. Клацніть його, щоб вимкнути субтитри (⌘L) або скопіювати розшифровку."
+            "value": "Parappa розташований у смузі меню. Клацніть його, щоб вимкнути субтитри (⌘L) або скопіювати розшифровку."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet nằm trên thanh menu. Bấm vào để tắt phụ đề (⌘L) hoặc sao chép bản ghi."
+            "value": "Parappa nằm trên thanh menu. Bấm vào để tắt phụ đề (⌘L) hoặc sao chép bản ghi."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet 位于菜单栏中。点按它即可关闭字幕（⌘L）或拷贝文字记录。"
+            "value": "Parappa 位于菜单栏中。点按它即可关闭字幕（⌘L）或拷贝文字记录。"
           }
         }
       }
     },
-    "Open Parakeet when I log in": {
+    "Open Parappa when I log in": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "فتح Parakeet عند تسجيل الدخول"
+            "value": "فتح Parappa عند تسجيل الدخول"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Отваряй Parakeet при влизане"
+            "value": "Отваряй Parappa при влизане"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Otevírat Parakeet po přihlášení"
+            "value": "Otevírat Parappa po přihlášení"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Åbn Parakeet ved login"
+            "value": "Åbn Parappa ved login"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet beim Anmelden öffnen"
+            "value": "Parappa beim Anmelden öffnen"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abrir Parakeet al iniciar sesión"
+            "value": "Abrir Parappa al iniciar sesión"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ava Parakeet sisselogimisel"
+            "value": "Ava Parappa sisselogimisel"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avaa Parakeet kirjauduttaessa"
+            "value": "Avaa Parappa kirjauduttaessa"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ouvrir Parakeet à l'ouverture de session"
+            "value": "Ouvrir Parappa à l'ouverture de session"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "लॉग इन करने पर Parakeet खोलें"
+            "value": "लॉग इन करने पर Parappa खोलें"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Otvori Parakeet pri prijavi"
+            "value": "Otvori Parappa pri prijavi"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "A Parakeet megnyitása bejelentkezéskor"
+            "value": "A Parappa megnyitása bejelentkezéskor"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apri Parakeet al login"
+            "value": "Apri Parappa al login"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ログイン時にParakeetを開く"
+            "value": "ログイン時にParappaを開く"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "로그인 시 Parakeet 열기"
+            "value": "로그인 시 Parappa 열기"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Åpne Parakeet ved pålogging"
+            "value": "Åpne Parappa ved pålogging"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open Parakeet bij inloggen"
+            "value": "Open Parappa bij inloggen"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Otwieraj Parakeet po zalogowaniu"
+            "value": "Otwieraj Parappa po zalogowaniu"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abrir o Parakeet ao iniciar sessão"
+            "value": "Abrir o Parappa ao iniciar sessão"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Abrir o Parakeet ao iniciar sessão"
+            "value": "Abrir o Parappa ao iniciar sessão"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deschide Parakeet la autentificare"
+            "value": "Deschide Parappa la autentificare"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Открывать Parakeet при входе"
+            "value": "Открывать Parappa при входе"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Otvárať Parakeet po prihlásení"
+            "value": "Otvárať Parappa po prihlásení"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Öppna Parakeet vid inloggning"
+            "value": "Öppna Parappa vid inloggning"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Giriş yaptığımda Parakeet'i aç"
+            "value": "Giriş yaptığımda Parappa'i aç"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Відкривати Parakeet під час входу"
+            "value": "Відкривати Parappa під час входу"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mở Parakeet khi đăng nhập"
+            "value": "Mở Parappa khi đăng nhập"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "登录时打开 Parakeet"
+            "value": "登录时打开 Parappa"
           }
         }
       }
@@ -4989,174 +4989,174 @@
         }
       }
     },
-    "Quit Parakeet": {
+    "Quit Parappa": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "إنهاء Parakeet"
+            "value": "إنهاء Parappa"
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Изход от Parakeet"
+            "value": "Изход от Parappa"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ukončit Parakeet"
+            "value": "Ukončit Parappa"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Slut Parakeet"
+            "value": "Slut Parappa"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet beenden"
+            "value": "Parappa beenden"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Salir de Parakeet"
+            "value": "Salir de Parappa"
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sulge Parakeet"
+            "value": "Sulge Parappa"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lopeta Parakeet"
+            "value": "Lopeta Parappa"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Quitter Parakeet"
+            "value": "Quitter Parappa"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet बंद करें"
+            "value": "Parappa बंद करें"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zatvori Parakeet"
+            "value": "Zatvori Parappa"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kilépés a Parakeetből"
+            "value": "Kilépés a Parappaből"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Esci da Parakeet"
+            "value": "Esci da Parappa"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeetを終了"
+            "value": "Parappaを終了"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet 종료"
+            "value": "Parappa 종료"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avslutt Parakeet"
+            "value": "Avslutt Parappa"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stop Parakeet"
+            "value": "Stop Parappa"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zakończ Parakeet"
+            "value": "Zakończ Parappa"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Encerrar Parakeet"
+            "value": "Encerrar Parappa"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sair do Parakeet"
+            "value": "Sair do Parappa"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Închide Parakeet"
+            "value": "Închide Parappa"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Завершить Parakeet"
+            "value": "Завершить Parappa"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ukončiť Parakeet"
+            "value": "Ukončiť Parappa"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avsluta Parakeet"
+            "value": "Avsluta Parappa"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet'ten Çık"
+            "value": "Parappa'ten Çık"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Вийти з Parakeet"
+            "value": "Вийти з Parappa"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Thoát Parakeet"
+            "value": "Thoát Parappa"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "退出 Parakeet"
+            "value": "退出 Parappa"
           }
         }
       }
@@ -8085,174 +8085,174 @@
         }
       }
     },
-    "Press ⇧⌘1 and Parakeet reads the text on your screen and translates it right where it is, on this Mac. Nothing is recorded or sent anywhere.": {
+    "Press ⇧⌘1 and Parappa reads the text on your screen and translates it right where it is, on this Mac. Nothing is recorded or sent anywhere.": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "اضغط ⇧⌘1 ليقرأ Parakeet النص على شاشتك ويترجمه في مكانه، على هذا الـ Mac. لا يُسجَّل أي شيء ولا يُرسَل إلى أي مكان."
+            "value": "اضغط ⇧⌘1 ليقرأ Parappa النص على شاشتك ويترجمه في مكانه، على هذا الـ Mac. لا يُسجَّل أي شيء ولا يُرسَل إلى أي مكان."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Натиснете ⇧⌘1 и Parakeet прочита текста на екрана и го превежда точно там, където е, на този Mac. Нищо не се записва и не се изпраща никъде."
+            "value": "Натиснете ⇧⌘1 и Parappa прочита текста на екрана и го превежда точно там, където е, на този Mac. Нищо не се записва и не се изпраща никъде."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stiskněte ⇧⌘1 a Parakeet přečte text na obrazovce a přeloží ho přímo na místě, na tomto Macu. Nic se nenahrává ani nikam neodesílá."
+            "value": "Stiskněte ⇧⌘1 a Parappa přečte text na obrazovce a přeloží ho přímo na místě, na tomto Macu. Nic se nenahrává ani nikam neodesílá."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tryk på ⇧⌘1, så læser Parakeet teksten på skærmen og oversætter den lige der, hvor den står, på denne Mac. Intet optages eller sendes nogen steder hen."
+            "value": "Tryk på ⇧⌘1, så læser Parappa teksten på skærmen og oversætter den lige der, hvor den står, på denne Mac. Intet optages eller sendes nogen steder hen."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Drücke ⇧⌘1, und Parakeet liest den Text auf deinem Bildschirm und übersetzt ihn direkt an Ort und Stelle, auf diesem Mac. Nichts wird aufgezeichnet oder irgendwohin gesendet."
+            "value": "Drücke ⇧⌘1, und Parappa liest den Text auf deinem Bildschirm und übersetzt ihn direkt an Ort und Stelle, auf diesem Mac. Nichts wird aufgezeichnet oder irgendwohin gesendet."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pulsa ⇧⌘1 y Parakeet lee el texto de tu pantalla y lo traduce justo donde está, en este Mac. No se graba ni se envía nada."
+            "value": "Pulsa ⇧⌘1 y Parappa lee el texto de tu pantalla y lo traduce justo donde está, en este Mac. No se graba ni se envía nada."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vajuta ⇧⌘1 ja Parakeet loeb ekraanil oleva teksti ning tõlgib selle otse oma kohal, selles Macis. Midagi ei salvestata ega saadeta kuhugi."
+            "value": "Vajuta ⇧⌘1 ja Parappa loeb ekraanil oleva teksti ning tõlgib selle otse oma kohal, selles Macis. Midagi ei salvestata ega saadeta kuhugi."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Paina ⇧⌘1, niin Parakeet lukee näytön tekstin ja kääntää sen juuri siinä, missä se on, tällä Macilla. Mitään ei tallenneta eikä lähetetä minnekään."
+            "value": "Paina ⇧⌘1, niin Parappa lukee näytön tekstin ja kääntää sen juuri siinä, missä se on, tällä Macilla. Mitään ei tallenneta eikä lähetetä minnekään."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Appuyez sur ⇧⌘1 : Parakeet lit le texte de votre écran et le traduit là où il se trouve, sur ce Mac. Rien n’est enregistré ni envoyé."
+            "value": "Appuyez sur ⇧⌘1 : Parappa lit le texte de votre écran et le traduit là où il se trouve, sur ce Mac. Rien n’est enregistré ni envoyé."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "⇧⌘1 दबाएँ, और Parakeet आपकी स्क्रीन का टेक्स्ट पढ़कर उसका वहीं अनुवाद करता है, इसी Mac पर। कुछ भी रिकॉर्ड या कहीं भेजा नहीं जाता।"
+            "value": "⇧⌘1 दबाएँ, और Parappa आपकी स्क्रीन का टेक्स्ट पढ़कर उसका वहीं अनुवाद करता है, इसी Mac पर। कुछ भी रिकॉर्ड या कहीं भेजा नहीं जाता।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pritisnite ⇧⌘1 i Parakeet čita tekst na zaslonu te ga prevodi točno ondje gdje jest, na ovom Macu. Ništa se ne snima niti šalje."
+            "value": "Pritisnite ⇧⌘1 i Parappa čita tekst na zaslonu te ga prevodi točno ondje gdje jest, na ovom Macu. Ništa se ne snima niti šalje."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nyomd meg a ⇧⌘1-et, és a Parakeet elolvassa a képernyőn lévő szöveget, majd ott helyben lefordítja, ezen a Macen. Semmit nem rögzít és nem küld el."
+            "value": "Nyomd meg a ⇧⌘1-et, és a Parappa elolvassa a képernyőn lévő szöveget, majd ott helyben lefordítja, ezen a Macen. Semmit nem rögzít és nem küld el."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Premi ⇧⌘1 e Parakeet legge il testo sullo schermo e lo traduce proprio dove si trova, su questo Mac. Nulla viene registrato o inviato."
+            "value": "Premi ⇧⌘1 e Parappa legge il testo sullo schermo e lo traduce proprio dove si trova, su questo Mac. Nulla viene registrato o inviato."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "⇧⌘1 を押すと、Parakeet が画面上のテキストを読み取り、その場で翻訳します。処理はこの Mac 上で行われ、録画や送信は一切されません。"
+            "value": "⇧⌘1 を押すと、Parappa が画面上のテキストを読み取り、その場で翻訳します。処理はこの Mac 上で行われ、録画や送信は一切されません。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "⇧⌘1을 누르면 Parakeet이 화면의 텍스트를 읽어 그 자리에서 번역합니다. 모두 이 Mac에서 처리되며, 아무것도 녹화되거나 전송되지 않습니다."
+            "value": "⇧⌘1을 누르면 Parappa가 화면의 텍스트를 읽어 그 자리에서 번역합니다. 모두 이 Mac에서 처리되며, 아무것도 녹화되거나 전송되지 않습니다."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Trykk ⇧⌘1, så leser Parakeet teksten på skjermen og oversetter den akkurat der den står, på denne Macen. Ingenting tas opp eller sendes noe sted."
+            "value": "Trykk ⇧⌘1, så leser Parappa teksten på skjermen og oversetter den akkurat der den står, på denne Macen. Ingenting tas opp eller sendes noe sted."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Druk op ⇧⌘1 en Parakeet leest de tekst op je scherm en vertaalt die ter plekke, op deze Mac. Er wordt niets opgenomen of verstuurd."
+            "value": "Druk op ⇧⌘1 en Parappa leest de tekst op je scherm en vertaalt die ter plekke, op deze Mac. Er wordt niets opgenomen of verstuurd."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Naciśnij ⇧⌘1, a Parakeet odczyta tekst na ekranie i przetłumaczy go dokładnie tam, gdzie jest, na tym Macu. Nic nie jest nagrywane ani nigdzie wysyłane."
+            "value": "Naciśnij ⇧⌘1, a Parappa odczyta tekst na ekranie i przetłumaczy go dokładnie tam, gdzie jest, na tym Macu. Nic nie jest nagrywane ani nigdzie wysyłane."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pressione ⇧⌘1 e o Parakeet lê o texto da tela e o traduz bem onde ele está, neste Mac. Nada é gravado nem enviado."
+            "value": "Pressione ⇧⌘1 e o Parappa lê o texto da tela e o traduz bem onde ele está, neste Mac. Nada é gravado nem enviado."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Prima ⇧⌘1 e o Parakeet lê o texto do ecrã e tradu-lo exatamente onde está, neste Mac. Nada é gravado nem enviado."
+            "value": "Prima ⇧⌘1 e o Parappa lê o texto do ecrã e tradu-lo exatamente onde está, neste Mac. Nada é gravado nem enviado."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apasă ⇧⌘1, iar Parakeet citește textul de pe ecran și îl traduce chiar acolo unde se află, pe acest Mac. Nimic nu este înregistrat sau trimis nicăieri."
+            "value": "Apasă ⇧⌘1, iar Parappa citește textul de pe ecran și îl traduce chiar acolo unde se află, pe acest Mac. Nimic nu este înregistrat sau trimis nicăieri."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Нажмите ⇧⌘1, и Parakeet прочитает текст на экране и переведёт его прямо на месте, на этом Mac. Ничего не записывается и никуда не отправляется."
+            "value": "Нажмите ⇧⌘1, и Parappa прочитает текст на экране и переведёт его прямо на месте, на этом Mac. Ничего не записывается и никуда не отправляется."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Stlačte ⇧⌘1 a Parakeet prečíta text na obrazovke a preloží ho priamo na mieste, na tomto Macu. Nič sa nenahráva ani nikam neodosiela."
+            "value": "Stlačte ⇧⌘1 a Parappa prečíta text na obrazovke a preloží ho priamo na mieste, na tomto Macu. Nič sa nenahráva ani nikam neodosiela."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tryck på ⇧⌘1 så läser Parakeet texten på skärmen och översätter den precis där den står, på den här datorn. Inget spelas in eller skickas någonstans."
+            "value": "Tryck på ⇧⌘1 så läser Parappa texten på skärmen och översätter den precis där den står, på den här datorn. Inget spelas in eller skickas någonstans."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "⇧⌘1’e basın; Parakeet ekranınızdaki metni okuyup olduğu yerde, bu Mac’te çevirir. Hiçbir şey kaydedilmez veya bir yere gönderilmez."
+            "value": "⇧⌘1’e basın; Parappa ekranınızdaki metni okuyup olduğu yerde, bu Mac’te çevirir. Hiçbir şey kaydedilmez veya bir yere gönderilmez."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Натисніть ⇧⌘1, і Parakeet прочитає текст на екрані та перекладе його просто на місці, на цьому Mac. Нічого не записується і нікуди не надсилається."
+            "value": "Натисніть ⇧⌘1, і Parappa прочитає текст на екрані та перекладе його просто на місці, на цьому Mac. Нічого не записується і нікуди не надсилається."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nhấn ⇧⌘1 và Parakeet sẽ đọc văn bản trên màn hình rồi dịch ngay tại chỗ, trên máy Mac này. Không có gì được ghi lại hay gửi đi."
+            "value": "Nhấn ⇧⌘1 và Parappa sẽ đọc văn bản trên màn hình rồi dịch ngay tại chỗ, trên máy Mac này. Không có gì được ghi lại hay gửi đi."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "按下 ⇧⌘1，Parakeet 会读取屏幕上的文字并在原处翻译，全部在这台 Mac 上完成。不会录制或发送任何内容。"
+            "value": "按下 ⇧⌘1，Parappa 会读取屏幕上的文字并在原处翻译，全部在这台 Mac 上完成。不会录制或发送任何内容。"
           }
         }
       }
@@ -8601,174 +8601,174 @@
         }
       }
     },
-    "Drag Parakeet into the list, or turn it on there. If macOS asks to quit and reopen Parakeet, go ahead.": {
+    "Drag Parappa into the list, or turn it on there. If macOS asks to quit and reopen Parappa, go ahead.": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "اسحب Parakeet إلى القائمة، أو شغّله هناك. إذا طلب macOS إنهاء Parakeet وإعادة فتحه، فوافق."
+            "value": "اسحب Parappa إلى القائمة، أو شغّله هناك. إذا طلب macOS إنهاء Parappa وإعادة فتحه، فوافق."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Плъзнете Parakeet в списъка или го включете там. Ако macOS поиска да затворите и отворите отново Parakeet, приемете."
+            "value": "Плъзнете Parappa в списъка или го включете там. Ако macOS поиска да затворите и отворите отново Parappa, приемете."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Přetáhněte Parakeet do seznamu, nebo ho tam zapněte. Pokud macOS požádá o ukončení a opětovné otevření Parakeetu, potvrďte to."
+            "value": "Přetáhněte Parappa do seznamu, nebo ho tam zapněte. Pokud macOS požádá o ukončení a opětovné otevření Parappau, potvrďte to."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Træk Parakeet ind på listen, eller slå det til der. Hvis macOS beder om at afslutte og genåbne Parakeet, så gør det."
+            "value": "Træk Parappa ind på listen, eller slå det til der. Hvis macOS beder om at afslutte og genåbne Parappa, så gør det."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ziehe Parakeet in die Liste oder schalte es dort ein. Wenn macOS darum bittet, Parakeet zu beenden und neu zu öffnen, stimme zu."
+            "value": "Ziehe Parappa in die Liste oder schalte es dort ein. Wenn macOS darum bittet, Parappa zu beenden und neu zu öffnen, stimme zu."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arrastra Parakeet a la lista o actívalo ahí. Si macOS pide salir y volver a abrir Parakeet, acéptalo."
+            "value": "Arrastra Parappa a la lista o actívalo ahí. Si macOS pide salir y volver a abrir Parappa, acéptalo."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lohista Parakeet loendisse või lülita see seal sisse. Kui macOS palub Parakeeti sulgeda ja uuesti avada, nõustu."
+            "value": "Lohista Parappa loendisse või lülita see seal sisse. Kui macOS palub Parappai sulgeda ja uuesti avada, nõustu."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vedä Parakeet luetteloon tai laita se päälle siellä. Jos macOS pyytää sulkemaan ja avaamaan Parakeetin uudelleen, hyväksy."
+            "value": "Vedä Parappa luetteloon tai laita se päälle siellä. Jos macOS pyytää sulkemaan ja avaamaan Parappain uudelleen, hyväksy."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Faites glisser Parakeet dans la liste, ou activez-le là. Si macOS demande de quitter et rouvrir Parakeet, acceptez."
+            "value": "Faites glisser Parappa dans la liste, ou activez-le là. Si macOS demande de quitter et rouvrir Parappa, acceptez."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet को सूची में खींचें, या वहीं चालू करें। अगर macOS Parakeet को बंद करके फिर से खोलने को कहे, तो हाँ करें।"
+            "value": "Parappa को सूची में खींचें, या वहीं चालू करें। अगर macOS Parappa को बंद करके फिर से खोलने को कहे, तो हाँ करें।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Povucite Parakeet na popis ili ga ondje uključite. Ako macOS zatraži zatvaranje i ponovno otvaranje Parakeeta, prihvatite."
+            "value": "Povucite Parappa na popis ili ga ondje uključite. Ako macOS zatraži zatvaranje i ponovno otvaranje Parappaa, prihvatite."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Húzd a Parakeetet a listába, vagy kapcsold be ott. Ha a macOS a Parakeet bezárását és újranyitását kéri, engedd."
+            "value": "Húzd a Parappaet a listába, vagy kapcsold be ott. Ha a macOS a Parappa bezárását és újranyitását kéri, engedd."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Trascina Parakeet nell’elenco o attivalo lì. Se macOS chiede di chiudere e riaprire Parakeet, accetta."
+            "value": "Trascina Parappa nell’elenco o attivalo lì. Se macOS chiede di chiudere e riaprire Parappa, accetta."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet をリストにドラッグするか、そこでオンにしてください。macOS が Parakeet の終了と再起動を求めたら、そのまま進めてください。"
+            "value": "Parappa をリストにドラッグするか、そこでオンにしてください。macOS が Parappa の終了と再起動を求めたら、そのまま進めてください。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet을 목록으로 끌어다 놓거나 그곳에서 켜세요. macOS가 Parakeet을 종료하고 다시 열도록 요청하면 그대로 진행하세요."
+            "value": "Parappa를 목록으로 끌어다 놓거나 그곳에서 켜세요. macOS가 Parappa를 종료하고 다시 열도록 요청하면 그대로 진행하세요."
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dra Parakeet inn i listen, eller slå det på der. Hvis macOS ber om å avslutte og åpne Parakeet på nytt, godta det."
+            "value": "Dra Parappa inn i listen, eller slå det på der. Hvis macOS ber om å avslutte og åpne Parappa på nytt, godta det."
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sleep Parakeet naar de lijst of zet het daar aan. Als macOS vraagt Parakeet te stoppen en opnieuw te openen, ga akkoord."
+            "value": "Sleep Parappa naar de lijst of zet het daar aan. Als macOS vraagt Parappa te stoppen en opnieuw te openen, ga akkoord."
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Przeciągnij Parakeet na listę lub włącz go tam. Jeśli macOS poprosi o zamknięcie i ponowne otwarcie Parakeet, zgódź się."
+            "value": "Przeciągnij Parappa na listę lub włącz go tam. Jeśli macOS poprosi o zamknięcie i ponowne otwarcie Parappa, zgódź się."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arraste o Parakeet para a lista ou ative-o lá. Se o macOS pedir para encerrar e reabrir o Parakeet, aceite."
+            "value": "Arraste o Parappa para a lista ou ative-o lá. Se o macOS pedir para encerrar e reabrir o Parappa, aceite."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Arraste o Parakeet para a lista ou ative-o lá. Se o macOS pedir para encerrar e reabrir o Parakeet, aceite."
+            "value": "Arraste o Parappa para a lista ou ative-o lá. Se o macOS pedir para encerrar e reabrir o Parappa, aceite."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Trage Parakeet în listă sau activează-l acolo. Dacă macOS cere să închizi și să redeschizi Parakeet, acceptă."
+            "value": "Trage Parappa în listă sau activează-l acolo. Dacă macOS cere să închizi și să redeschizi Parappa, acceptă."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Перетащите Parakeet в список или включите его там. Если macOS попросит закрыть и снова открыть Parakeet, согласитесь."
+            "value": "Перетащите Parappa в список или включите его там. Если macOS попросит закрыть и снова открыть Parappa, согласитесь."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Presuňte Parakeet do zoznamu alebo ho tam zapnite. Ak macOS požiada o ukončenie a opätovné otvorenie Parakeetu, potvrďte to."
+            "value": "Presuňte Parappa do zoznamu alebo ho tam zapnite. Ak macOS požiada o ukončenie a opätovné otvorenie Parappau, potvrďte to."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dra Parakeet till listan, eller slå på det där. Om macOS ber dig avsluta och öppna Parakeet igen, gör det."
+            "value": "Dra Parappa till listan, eller slå på det där. Om macOS ber dig avsluta och öppna Parappa igen, gör det."
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parakeet’i listeye sürükleyin veya orada açın. macOS Parakeet’i kapatıp yeniden açmayı isterse kabul edin."
+            "value": "Parappa’i listeye sürükleyin veya orada açın. macOS Parappa’i kapatıp yeniden açmayı isterse kabul edin."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Перетягніть Parakeet у список або ввімкніть його там. Якщо macOS попросить закрити й знову відкрити Parakeet, погодьтеся."
+            "value": "Перетягніть Parappa у список або ввімкніть його там. Якщо macOS попросить закрити й знову відкрити Parappa, погодьтеся."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Kéo Parakeet vào danh sách hoặc bật nó ở đó. Nếu macOS yêu cầu thoát và mở lại Parakeet, hãy đồng ý."
+            "value": "Kéo Parappa vào danh sách hoặc bật nó ở đó. Nếu macOS yêu cầu thoát và mở lại Parappa, hãy đồng ý."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "将 Parakeet 拖入列表，或在那里将其打开。如果 macOS 要求退出并重新打开 Parakeet，请照做。"
+            "value": "将 Parappa 拖入列表，或在那里将其打开。如果 macOS 要求退出并重新打开 Parappa，请照做。"
           }
         }
       }

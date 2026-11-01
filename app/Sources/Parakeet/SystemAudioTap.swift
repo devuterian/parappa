@@ -23,7 +23,7 @@ final class SystemAudioTap {
 
         let outputUID = try defaultOutputUID()
         let aggregate: [String: Any] = [
-            kAudioAggregateDeviceNameKey: "Parakeet Tap",
+            kAudioAggregateDeviceNameKey: "Parappa Tap",
             kAudioAggregateDeviceUIDKey: UUID().uuidString,
             kAudioAggregateDeviceMainSubDeviceKey: outputUID,
             kAudioAggregateDeviceIsPrivateKey: true,
