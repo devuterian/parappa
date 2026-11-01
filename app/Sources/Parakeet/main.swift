@@ -46,9 +46,32 @@ enum EngineKind: String {
 final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private let captions = Captions()
     private let translator = Translator()
-    private lazy var panel = CaptionPanel(captions: captions, translator: translator,
-                                          onClose: { [weak self] in self?.stopListening() },
-                                          onCopy: { [weak self] in self?.copyTranscript() })
+    private lazy var panel = makePanel()
+
+    private func makePanel() -> CaptionPanel {
+        CaptionPanel(captions: captions, translator: translator,
+                     onClose: { [weak self] in self?.stopListening() },
+                     onCopy: { [weak self] in self?.copyTranscript() })
+    }
+
+    /// A locked panel ignores the mouse everywhere; AppKit can't be told to
+    /// go back to letting only its clear parts through, so unlocking swaps
+    /// in a new panel.
+    private func followLock() {
+        let locked = Prefs.shared.locked
+        withObservationTracking { _ = Prefs.shared.locked } onChange: { [weak self] in
+            DispatchQueue.main.async {
+                guard let self else { return }
+                self.followLock()
+                if locked, !Prefs.shared.locked {
+                    let shown = self.panel.isVisible
+                    self.panel.close()
+                    self.panel = self.makePanel()
+                    if shown { self.panel.orderFrontRegardless() }
+                }
+            }
+        }
+    }
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     private let tap = SystemAudioTap()
     // Into the captions' language, else the user's own if Translation knows it, else English.
@@ -111,6 +134,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             self?.run(command: note.object as? String ?? "")
         }
         followModelChoice()
+        followLock()
     }
 
     /// Restarts the engine when another model is picked in Settings.

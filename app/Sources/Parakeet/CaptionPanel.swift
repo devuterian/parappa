@@ -196,6 +196,8 @@ final class CaptionPanel: NSPanel {
     private let prefs = Prefs.shared
     /// Set while the panel is moved by code, so only the user's drags count as custom placement.
     private var positioning = false
+    /// Set while the user drags the box.
+    private var dragging = false
 
     init(captions: Captions, translator: Translator, onClose: @escaping () -> Void, onCopy: @escaping () -> Void) {
         super.init(contentRect: .zero, styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
@@ -207,25 +209,64 @@ final class CaptionPanel: NSPanel {
         hasShadow = false
         isMovableByWindowBackground = true
         hidesOnDeactivate = false
+        isReleasedWhenClosed = false  // held by AppDelegate; closed when replaced
 
-        let host = NSHostingView(rootView: CaptionView(captions: captions, translator: translator, onClose: onClose, onCopy: onCopy))
+        var drag: (mouse: CGPoint, origin: CGPoint)?
+        let host = NSHostingView(rootView: CaptionView(captions: captions, translator: translator, onClose: onClose, onCopy: onCopy) { [weak self] ended, moved in
+            // Follows the pointer in screen coordinates; the gesture's own are
+            // the window's, which move with it.
+            guard let self else { return }
+            let mouse = NSEvent.mouseLocation
+            if ended {
+                drag = nil
+                self.dragged()
+                self.dragging = false
+            } else if let start = drag {
+                self.setFrameOrigin(.init(x: start.origin.x + mouse.x - start.mouse.x, y: start.origin.y + mouse.y - start.mouse.y))
+            } else {
+                // The gesture starts a little way in; take the pointer back to
+                // where it was pressed (the window hasn't moved yet, so the
+                // gesture's distance is the screen's, y flipped).
+                self.dragging = true
+                drag = (CGPoint(x: mouse.x - moved.width, y: mouse.y + moved.height), self.frame.origin)
+                self.setFrameOrigin(.init(x: self.frame.origin.x + moved.width, y: self.frame.origin.y - moved.height))
+            }
+        })
         host.sizingOptions = []
         contentView = host
 
         follow()
-        NotificationCenter.default.addObserver(forName: NSWindow.didMoveNotification, object: self, queue: .main) { [weak self] _ in
-            self?.dragged()
-        }
-        NotificationCenter.default.addObserver(forName: NSApplication.didChangeScreenParametersNotification, object: nil, queue: .main) { [weak self] _ in
-            self?.layout()
-        }
+        observers = [
+            NotificationCenter.default.addObserver(forName: NSWindow.didMoveNotification, object: self, queue: .main) { [weak self] _ in
+                self?.dragged()
+            },
+            NotificationCenter.default.addObserver(forName: NSApplication.didChangeScreenParametersNotification, object: nil, queue: .main) { [weak self] _ in
+                self?.layout()
+            },
+        ]
+    }
+
+    private var observers: [NSObjectProtocol] = []
+    /// Set once the panel is replaced: stops following the settings.
+    private var retired = false
+
+    override func close() {
+        retired = true
+        observers.forEach(NotificationCenter.default.removeObserver)
+        observers = []
+        super.close()
     }
 
     override var canBecomeKey: Bool { false }
 
     /// Lays the panel out again whenever a setting it depends on changes.
     private func follow() {
-        withObservationTracking { layout() } onChange: { [weak self] in
+        guard !retired else { return }
+        withObservationTracking {
+            // Read up front: layout() may return early (mid-drag) before reading them.
+            _ = (prefs.placement, prefs.screenName, prefs.locked, prefs.mainSize, prefs.originalSize, prefs.fontFamily, prefs.weight)
+            layout()
+        } onChange: { [weak self] in
             DispatchQueue.main.async { self?.follow() }
         }
     }
@@ -241,7 +282,12 @@ final class CaptionPanel: NSPanel {
     }
 
     private func layout() {
-        ignoresMouseEvents = prefs.locked
+        // Only ever set to true: left alone, clicks pass through the clear
+        // parts of the panel (nearly all of it while nobody speaks); set to
+        // false, the whole panel would catch them. Unlocking replaces the panel.
+        if prefs.locked { ignoresMouseEvents = true }
+        // Mid-drag: leave the window where the pointer is taking it.
+        if dragging { return }
         guard let screen = prefs.screen?.visibleFrame else { return }
         // Wider for larger text, so a line still holds a sentence's worth.
         let width = min(screen.width * 0.9, min(900, screen.width * 0.7) * max(1, prefs.mainSize / 22))
@@ -270,7 +316,7 @@ final class CaptionPanel: NSPanel {
     /// The user dragged the box: it stays there, on whichever screen it was dropped on.
     private func dragged() {
         // Only the user's drags: macOS also moves windows when displays change.
-        guard !positioning, NSEvent.pressedMouseButtons & 1 != 0, let screen else { return }
+        guard !positioning, dragging, let screen else { return }
         let visible = screen.visibleFrame
         UserDefaults.standard.set((frame.midX - visible.minX) / visible.width, forKey: "customX")
         UserDefaults.standard.set((frame.minY - visible.minY) / visible.height, forKey: "customY")
@@ -285,6 +331,8 @@ struct CaptionView: View {
     /// The buttons show only when both are given (not in the welcome window's preview).
     var onClose: (() -> Void)?
     var onCopy: (() -> Void)?
+    /// Called as the box is dragged, with how far the pointer has gone; `true` once the drag ends.
+    var onDrag: ((Bool, CGSize) -> Void)?
     @State private var hovering = false
     private let prefs = Prefs.shared
 
@@ -350,6 +398,13 @@ struct CaptionView: View {
                 .padding(.horizontal, 18)
                 .padding(.vertical, 12)
                 .background(.black.opacity(0.72), in: .rect(cornerRadius: 14))
+                // The whole box, padding and empty space too, picks it up.
+                // AppKit's "movable by background" doesn't reach SwiftUI, and
+                // WindowDragGesture does nothing in a panel that never becomes key.
+                .contentShape(.rect(cornerRadius: 14))
+                .gesture(DragGesture(minimumDistance: 2)
+                    .onChanged { onDrag?(false, $0.translation) }
+                    .onEnded { onDrag?(true, $0.translation) })
                 .transition(.opacity)
             }
             if prefs.placement == .top { Spacer(minLength: 0) }
