@@ -269,7 +269,8 @@ final class CaptionPanel: NSPanel {
 
     /// The user dragged the box: it stays there, on whichever screen it was dropped on.
     private func dragged() {
-        guard !positioning, let screen else { return }
+        // Only the user's drags: macOS also moves windows when displays change.
+        guard !positioning, NSEvent.pressedMouseButtons & 1 != 0, let screen else { return }
         let visible = screen.visibleFrame
         UserDefaults.standard.set((frame.midX - visible.minX) / visible.width, forKey: "customX")
         UserDefaults.standard.set((frame.minY - visible.minY) / visible.height, forKey: "customY")
@@ -341,7 +342,7 @@ struct CaptionView: View {
                             .help("Translate To")
                         }
                         // Only while the pointer is over the box; the space stays, so text doesn't reflow.
-                        .opacity(hovering ? 1 : 0)
+                        .opacity(hovering && !prefs.locked ? 1 : 0)
                         .animation(.easeOut(duration: 0.15), value: hovering)
                     }
                 }

@@ -7,8 +7,54 @@ import NaturalLanguage
 @Observable
 final class RefinerStatus {
     static let shared = RefinerStatus()
-    enum State: Equatable { case off, waiting, downloading(Double), preparing, ready, failed(String) }
-    var state: State = .off
+    enum State: Equatable { case waiting, downloading(Double), preparing, ready, failed(String) }
+    var state: State = .waiting
+}
+
+/// Downloads and loads Cohere Transcribe once for the whole app, however
+/// often the model is switched: a 2 GB download can't be interrupted, and
+/// two at once would write the same files.
+@MainActor
+final class CohereLoader {
+    static let shared = CohereLoader()
+    private var task: Task<CoherePipeline.LoadedModels, Error>?
+
+    func models() async throws -> CoherePipeline.LoadedModels {
+        if let task { return try await task.value }
+        let status = RefinerStatus.shared
+        let task = Task.detached(priority: .utility) { () async throws -> CoherePipeline.LoadedModels in
+            let root = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+                .appendingPathComponent("FluidAudio/Models", isDirectory: true)
+            let dir = root.appendingPathComponent(Repo.cohereTranscribeCoreml.folderName, isDirectory: true)
+            return try await ModelHub.loadWithRecovery(
+                .cohereTranscribeCoreml, directory: root,
+                requiredFiles: ModelNames.CohereTranscribe.requiredModels,
+                progressHandler: { progress in
+                    DispatchQueue.main.async { status.state = .downloading(progress.fractionCompleted) }
+                }
+            ) {
+                await MainActor.run { status.state = .preparing }
+                // Neural Engine only: its compiled model is cached by macOS, so
+                // later launches load in a second. On the GPU, every launch
+                // spends ~90 s of one core expanding the int8 weights.
+                let models = try await CoherePipeline.loadModels(
+                    encoderDir: dir, decoderDir: dir, vocabDir: dir, computeUnits: .cpuAndNeuralEngine)
+                // The first transcription after a launch takes ~10 s more; spend it now, not on speech.
+                _ = try? await CoherePipeline().transcribe(audio: [Float](repeating: 0, count: 16_000), models: models)
+                return models
+            }
+        }
+        self.task = task
+        do {
+            let models = try await task.value
+            status.state = .ready
+            return models
+        } catch {
+            self.task = nil  // the next engine tries again
+            status.state = .failed(error.localizedDescription)
+            throw error
+        }
+    }
 }
 
 /// Nemotron's words as they're spoken, shown dim as a draft; each stretch
@@ -24,8 +70,8 @@ final class RefinerStatus {
 /// words are locked in instead.
 final class HybridEngine: Engine {
     private static let rate = 16_000
-    private static let maxSegment = 12 * rate        // Cohere v2 decodes 108 tokens per call at most
-    private static let pad = rate / 5                // audio kept either side of a stretch
+    private static let maxSegment = 16 * rate        // Cohere v2 decodes 108 tokens per call at most
+    private static let pad = rate / 5                // audio kept either side of a stretch at a pause
     /// How long after a word is spoken Nemotron may write it: one 560 ms
     /// chunk, plus the VAD's padding.
     private static let lag = 8_960 + 1_600
@@ -35,7 +81,6 @@ final class HybridEngine: Engine {
     private var nemotron: NemotronEngine?
     private let audio = AudioLog()
     private var refiner: Task<Void, Never>?
-    private let status = RefinerStatus.shared
 
     // Main thread only.
     private struct Word { var text: String; var at: Int }
@@ -47,7 +92,6 @@ final class HybridEngine: Engine {
     init(rehearseFirstLaunch: Bool = false, waitForRefiner: Bool = false, onEvent: @escaping (EngineEvent) -> Void) {
         self.onEvent = onEvent
         self.waitForRefiner = waitForRefiner
-        status.state = .waiting
         nemotron = NemotronEngine(rehearseFirstLaunch: rehearseFirstLaunch) { [weak self] event, at in
             self?.heard(event, at: at)
         }
@@ -61,12 +105,11 @@ final class HybridEngine: Engine {
     func stop() {
         nemotron?.stop()
         refiner?.cancel()
-        status.state = .off
     }
 
     /// Waits for the last stretch to be transcribed (the bench's trailing silence ends it).
     func finish() async {
-        for _ in 0..<300 where !audio.drained { try? await Task.sleep(for: .milliseconds(100)) }
+        for _ in 0..<600 where !audio.drained { try? await Task.sleep(for: .milliseconds(100)) }
         try? await Task.sleep(for: .seconds(1))
     }
 
@@ -81,12 +124,7 @@ final class HybridEngine: Engine {
             tail = Self.words(text, keeping: tail, at: at)
             showDraft()
         case .final(let text) where refining, .fragment(let text) where refining:
-            // The locked words are the tail's first ones.
-            let count = Self.split(text).count
-            let moved = Array(tail.prefix(count))
-            committed += moved
-            tail.removeFirst(moved.count)
-            if moved.count < count { committed += Self.split(text).dropFirst(moved.count).map { Word(text: $0, at: at) } }
+            lock(Self.split(text), at: at)
             showDraft()
         case .exited:
             refiner?.cancel()
@@ -96,24 +134,42 @@ final class HybridEngine: Engine {
         }
     }
 
+    /// Nemotron locked these words: the tail's first ones. Japanese and
+    /// Chinese aren't spaced, so a lock at "。" can end inside a tail
+    /// "word"; what's left of it stays in the tail.
+    private func lock(_ words: [String], at: Int) {
+        for word in words {
+            guard var first = tail.first else {
+                committed.append(Word(text: word, at: at))
+                continue
+            }
+            committed.append(Word(text: word, at: first.at))
+            if first.text.count > word.count, first.text.hasPrefix(word) {
+                first.text.removeFirst(word.count)
+                tail[0] = first
+            } else {
+                tail.removeFirst()
+            }
+        }
+    }
+
     private var draft: String { Self.join((committed + tail).map(\.text)) }
 
     private func showDraft() { onEvent(.partial(draft)) }
 
-    /// The draft's words written before `end` (in samples), without removing them.
-    private func draft(before end: Int) -> String {
-        Self.join((committed + tail).prefix { $0.at <= end + Self.lag }.map(\.text))
+    /// The draft's words written up to `end` (in samples), without removing them.
+    private func draft(upTo end: Int) -> String {
+        Self.join((committed + tail).prefix { $0.at <= end }.map(\.text))
     }
 
     /// Locks in a stretch: Cohere's text if it has one, else the draft's
-    /// words for it, which leave the draft either way.
-    private func confirm(before end: Int, text: String?) {
-        let cut = end + Self.lag
-        let fromCommitted = committed.prefix { $0.at <= cut }.count
+    /// words written up to `end`, which leave the draft either way.
+    private func confirm(upTo end: Int, text: String?) {
+        let fromCommitted = committed.prefix { $0.at <= end }.count
         var words = Array(committed.prefix(fromCommitted))
         committed.removeFirst(fromCommitted)
         if committed.isEmpty {
-            let fromTail = tail.prefix { $0.at <= cut }.count
+            let fromTail = tail.prefix { $0.at <= end }.count
             words += tail.prefix(fromTail)
             tail.removeFirst(fromTail)
         }
@@ -124,6 +180,16 @@ final class HybridEngine: Engine {
         showDraft()
     }
 
+    /// Cohere is gone (it failed): lock the draft as it is and caption with Nemotron alone.
+    private func stopRefining() {
+        guard refining else { return }
+        refining = false
+        let rest = draft
+        committed = []
+        tail = []
+        if !rest.isEmpty { onEvent(.fragment(rest)) }
+    }
+
     // MARK: Cohere's side
 
     private func startRefiner() {
@@ -131,13 +197,12 @@ final class HybridEngine: Engine {
         let audio = audio
         refiner = Task.detached(priority: .userInitiated) { [weak self] in
             do {
-                guard let models = try await self?.loadCohere() else { return }
+                let models = try await CohereLoader.shared.models()
                 let vad = try await VadManager()
-                // A download can't be interrupted; if the engine was stopped meanwhile, stop here.
+                // The download may finish after this engine was stopped.
                 try Task.checkCancellation()
                 await MainActor.run {
                     guard let self else { return }
-                    self.status.state = .ready
                     self.refining = true
                     if self.waitForRefiner { self.onEvent(.ready) }
                 }
@@ -147,28 +212,10 @@ final class HybridEngine: Engine {
                 let reason = error.localizedDescription
                 await MainActor.run {
                     guard let self else { return }
-                    self.status.state = .failed(reason)
+                    self.stopRefining()
                     if self.waitForRefiner { self.onEvent(.exited(reason)) }
                 }
             }
-        }
-    }
-
-    private func loadCohere() async throws -> CoherePipeline.LoadedModels {
-        let status = status
-        let root = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-            .appendingPathComponent("FluidAudio/Models", isDirectory: true)
-        let dir = root.appendingPathComponent(Repo.cohereTranscribeCoreml.folderName, isDirectory: true)
-        return try await ModelHub.loadWithRecovery(
-            .cohereTranscribeCoreml, directory: root,
-            requiredFiles: ModelNames.CohereTranscribe.requiredModels,
-            progressHandler: { progress in
-                DispatchQueue.main.async { status.state = .downloading(progress.fractionCompleted) }
-            }
-        ) {
-            // The first load compiles for the Neural Engine: minutes.
-            await MainActor.run { status.state = .preparing }
-            return try await CoherePipeline.loadModels(encoderDir: dir, decoderDir: dir, vocabDir: dir)
         }
     }
 
@@ -176,41 +223,66 @@ final class HybridEngine: Engine {
     private func listen(audio: AudioLog, vad: VadManager, cohere models: CoherePipeline.LoadedModels) async throws {
         let pipeline = CoherePipeline()
         let chunk = VadManager.chunkSize
-        let config = VadSegmentationConfig(minSilenceDuration: 0.5, speechPadding: 0.1)
+        // Short enough to end a stretch between sentences, even in a newsreader's pace.
+        let config = VadSegmentationConfig(minSilenceDuration: 0.35, speechPadding: 0.1)
         var state = await vad.makeStreamState()
         audio.recording = true
         defer { audio.recording = false }
         var cursor = audio.end              // next sample for the VAD
         var start: Int?                     // where the stretch being heard began
+        var startPadded = true              // began at a pause, not a cut
         var quiet: [(at: Int, p: Float)] = [] // recent speech probabilities, to cut a long stretch where it's quietest
+        var language = Self.defaultLanguage // the last one heard, for stretches the draft can't tell
+        var waiting = Date()                // since audio last arrived
 
-        func transcribe(_ from: Int, _ to: Int) async throws {
+        /// `paused`: it ended at a pause (padded with what's around it, and
+        /// Nemotron's lag allowed for); else it was cut mid-speech.
+        func transcribe(_ from: Int, _ to: Int, paused: Bool) async {
             let behind = audio.end - cursor
-            let samples = audio.slice(from: from - Self.pad, to: to + Self.pad)
-            let heard = await MainActor.run { self.draft(before: to) }
+            let samples = audio.slice(from: startPadded ? from - Self.pad : from, to: paused ? to + Self.pad : to)
+            let end = paused ? to + Self.lag : to
+            let heard = await MainActor.run { self.draft(upTo: end) }
+            switch Self.language(of: heard) {
+            case .some(let known): language = known
+            case .none: break
+            }
             var text: String?
-            // Fallen far behind (a slow Mac): let the draft stand rather than wait.
-            if behind < 8 * Self.rate, samples.count >= Self.rate / 3,
-               let language = Self.language(of: heard) {
+            // Fallen far behind (a slow Mac), or a language Cohere doesn't know: the draft stands.
+            if behind < 8 * Self.rate, samples.count >= Self.rate / 3, let language {
                 let t0 = Date()
-                let result = try await pipeline.transcribe(audio: samples, models: models, language: language)
-                text = Self.trusted(result, over: heard)
-                if Self.verbose {
-                    FileHandle.standardError.write(Data(String(format: "cohere %.2fs for %.1fs [%@]: %@\n  draft: %@\n",
-                        Date().timeIntervalSince(t0), Double(samples.count) / Double(Self.rate), language.rawValue,
-                        result.text, heard).utf8))
+                do {
+                    let result = try await pipeline.transcribe(audio: samples, models: models, language: language)
+                    text = Self.trusted(result, over: heard)
+                    if Self.verbose {
+                        FileHandle.standardError.write(Data(String(format: "cohere %.2fs for %.1fs [%@] %d tokens%@: %@\n  draft: %@\n",
+                            Date().timeIntervalSince(t0), Double(samples.count) / Double(Self.rate), language.rawValue,
+                            result.tokenIds.count, text == nil ? " (kept draft)" : "",
+                            result.text.replacingOccurrences(of: "\n", with: " "), heard).utf8))
+                    }
+                } catch {
+                    if Self.verbose { FileHandle.standardError.write(Data("cohere failed: \(error)\n".utf8)) }
                 }
             }
             let locked = text
-            await MainActor.run { self.confirm(before: to, text: locked) }
+            await MainActor.run { self.confirm(upTo: end, text: locked) }
+            startPadded = paused
         }
 
         while !Task.isCancelled {
             guard let samples = audio.slice(from: cursor, count: chunk) else {
+                let idle = Date().timeIntervalSince(waiting)
+                // Audio stopped coming (captions turned off): end the stretch there.
+                if idle > 1, let begun = start {
+                    start = nil
+                    await transcribe(begun, cursor, paused: true)
+                    state = await vad.makeStreamState()
+                }
                 audio.drained = start == nil
-                try await Task.sleep(for: .milliseconds(60))
+                // Nothing playing for a while: check less often.
+                try await Task.sleep(for: .milliseconds(idle > 2 ? 250 : 60))
                 continue
             }
+            waiting = Date()
             audio.drained = false
             cursor += chunk
             // Digital silence between stretches: nothing for the VAD to do.
@@ -221,23 +293,28 @@ final class HybridEngine: Engine {
             let result = try await vad.processStreamingChunk(samples, state: state, config: config)
             state = result.state
             let offset = cursor - state.processedSamples  // VAD sample index → ours
+            if Self.verbose, let event = result.event {
+                FileHandle.standardError.write(Data(String(format: "vad %.2fs %@\n", Double(event.sampleIndex + offset) / Double(Self.rate),
+                    event.isStart ? "start" : "end").utf8))
+            }
             quiet.append((cursor - chunk / 2, result.probability))
-            quiet.removeAll { $0.at < cursor - 5 * Self.rate }
+            quiet.removeAll { $0.at < cursor - 7 * Self.rate }
 
             if let event = result.event {
                 if event.isStart, start == nil {
                     start = event.sampleIndex + offset
+                    startPadded = true
                 } else if event.isEnd, let begun = start {
                     start = nil
-                    try await transcribe(begun, event.sampleIndex + offset)
+                    await transcribe(begun, event.sampleIndex + offset, paused: true)
                 }
             }
             // Too long to wait for a pause: cut at the quietest moment of the last few seconds.
             if let begun = start, cursor - begun > Self.maxSegment {
-                let candidates = quiet.filter { $0.at > cursor - 4 * Self.rate && $0.at < cursor - Self.rate / 2 }
+                let candidates = quiet.filter { $0.at > cursor - 6 * Self.rate && $0.at < cursor - Self.rate / 2 }
                 let cut = candidates.min { $0.p < $1.p }?.at ?? cursor
                 start = cut
-                try await transcribe(begun, cut)
+                await transcribe(begun, cut, paused: false)
             }
             audio.trim(before: (start ?? cursor) - Self.rate)
         }
@@ -245,15 +322,21 @@ final class HybridEngine: Engine {
 
     static var verbose = false
 
-    /// Cohere needs the language named. Taken from the draft, among those
-    /// it knows; nil (keep the draft) for any other.
-    private static func language(of text: String) -> CohereAsrConfig.Language? {
-        guard !text.isEmpty else { return nil }
+    /// Before anything is heard: the Mac's own language, if Cohere knows it.
+    private static let defaultLanguage: CohereAsrConfig.Language? =
+        Locale.preferredLanguages.lazy.compactMap { Locale.Language(identifier: $0).languageCode?.identifier }
+            .compactMap { CohereAsrConfig.Language(rawValue: $0) }.first
+
+    /// Cohere needs the language named; it's taken from the draft. `.some(nil)`
+    /// for a language Cohere doesn't know (the draft stands), nil when the
+    /// draft is too short or unclear to tell (the last language is used).
+    private static func language(of text: String) -> CohereAsrConfig.Language?? {
+        guard text.count >= 4 else { return nil }
         let recognizer = NLLanguageRecognizer()
-        recognizer.languageConstraints = CohereAsrConfig.Language.allCases.map { NLLanguage(rawValue: $0.rawValue) }
         recognizer.processString(text)
-        guard let (language, sure) = recognizer.languageHypotheses(withMaximum: 1).first, sure >= 0.5 else { return nil }
-        return CohereAsrConfig.Language(rawValue: language.rawValue)
+        guard let (heard, sure) = recognizer.languageHypotheses(withMaximum: 1).first, sure >= 0.5 else { return nil }
+        let code = Locale.Language(identifier: heard.rawValue).languageCode?.identifier ?? heard.rawValue
+        return .some(CohereAsrConfig.Language(rawValue: code))
     }
 
     /// Cohere's text, unless it looks wrong next to the draft: empty, or far
@@ -262,6 +345,11 @@ final class HybridEngine: Engine {
         let text = result.text.trimmingCharacters(in: .whitespacesAndNewlines)
         if text.isEmpty { return nil }
         if !draft.isEmpty, text.count > draft.count * 3 + 30 { return nil }
+        // Clearly shorter than what Nemotron heard: Cohere dropped speech (it
+        // can skip a sentence, or give "그, 음." for one). Numbers written as
+        // digits make it a little shorter on its own, hence the slack.
+        let length = { (s: String) in s.filter { !$0.isWhitespace }.count }
+        if length(draft) >= 12, length(text) * 10 < length(draft) * 7 { return nil }
         if result.tokenIds.count >= CohereAsrConfig.maxSeqLen - 4 { return nil }
         return text
     }

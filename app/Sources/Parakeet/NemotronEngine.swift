@@ -10,11 +10,13 @@ enum EngineEvent { case downloading(Double), preparing, ready, partial(String), 
 protocol Engine {
     func send(_ pcm: Data)
     func stop()
+    /// Tells the engine no more audio is coming, so anything still buffered
+    /// is transcribed too.
+    func finish() async
 }
 
 extension Engine {
-    /// Tells the engine no more audio is coming, so anything still buffered
-    /// is transcribed too. Default: nothing extra to do.
+    /// Default: nothing extra to do.
     func finish() async {}
 }
 
@@ -57,6 +59,7 @@ final class NemotronEngine: Engine {
                 if rehearseFirstLaunch { try await Task.sleep(for: .seconds(10)) }  // really ~1 min, first time only
                 let asr = StreamingNemotronMultilingualAsrManager()
                 try await asr.loadModels(from: dir)
+                try Task.checkCancellation()  // stopped while loading (another model was picked)
                 emit(.ready)
                 try await self?.run(asr, emit: emitAt)
             } catch is CancellationError {

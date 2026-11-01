@@ -113,8 +113,8 @@ private struct SettingsView: View {
                     .tag(ModelChoice.accurate)
                 }
                 .pickerStyle(.radioGroup)
-                if prefs.model == .accurate, let line = refiner.line {
-                    Text(line).font(.callout).foregroundStyle(.secondary)
+                if prefs.model == .accurate {
+                    Text(refiner.line).font(.callout).foregroundStyle(.secondary)
                 }
             }
         }
@@ -151,9 +151,8 @@ private struct SizeSlider: View {
 
 extension RefinerStatus {
     /// One line on what Cohere Transcribe is doing, or nil when it isn't in use.
-    var line: String? {
+    var line: String {
         switch state {
-        case .off: nil
         case .waiting: String(localized: "Cohere Transcribe waits for the speech model.")
         case .downloading(let fraction): String(localized: "Downloading Cohere Transcribe… \(Int(fraction * 100))%")
         case .preparing: String(localized: "Preparing Cohere Transcribe. The first time takes a few minutes.")

@@ -1,3 +1,4 @@
+import FluidAudio
 import AppKit
 import ServiceManagement
 import Sparkle
@@ -59,6 +60,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private lazy var updater = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: self)
     private var engine: Engine?
     private var engineKind = EngineKind.current
+    /// Counts engines started; events from one already replaced are dropped
+    /// (a stopped engine's model download can't be interrupted).
+    private var generation = 0
     /// Whether captions start once the model is ready: not after a model
     /// switch while they were off.
     private var resumeListening = true
@@ -121,7 +125,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
     private func switchModel() {
-        resumeListening = listening || engine == nil
+        // Still loading: whatever was meant to happen once it's ready still holds.
+        resumeListening = listening || (!ready && resumeListening)
         if listening { stopListening() }
         engine?.stop()
         engine = nil
@@ -179,8 +184,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     func menuNeedsUpdate(_ menu: NSMenu) {
         menu.removeAllItems()
         menu.addItem(withTitle: statusLine + engineTag, action: nil, keyEquivalent: "")
-        if engineKind == .hybrid, ready, let line = RefinerStatus.shared.line {
-            menu.addItem(withTitle: line, action: nil, keyEquivalent: "")
+        if engineKind == .hybrid, ready {
+            menu.addItem(withTitle: RefinerStatus.shared.line, action: nil, keyEquivalent: "")
         }
         if engine == nil {
             menu.addItem(withTitle: String(localized: "Try Again"), action: #selector(startEngine), keyEquivalent: "")
@@ -251,7 +256,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         status = String(localized: "Loading speech model…")
         onboarding?.model = .waiting
         engineKind = EngineKind.current
-        engine = engineKind.make(rehearseFirstLaunch: rehearse) { [weak self] event in self?.handle(event) }
+        generation += 1
+        let current = generation
+        engine = engineKind.make(rehearseFirstLaunch: rehearse) { [weak self] event in
+            guard let self, self.generation == current else { return }
+            self.handle(event)
+        }
         updateIcon()
     }
 
@@ -413,6 +423,25 @@ if commands.count == 2, commands[0] == "--bench" {
         case .partial(let text): print(t, "  ~", text)
         case .exited(let reason): print("exited:", reason); exit(1)
         }
+    }
+    RunLoop.main.run()
+}
+
+// `Parappa --cohere file.wav ko [from] [to]` transcribes a 16 kHz float32 WAV
+// (or the seconds from..to of it) with Cohere Transcribe in one call.
+if commands.count >= 3, commands[0] == "--cohere" {
+    let data = try! Data(contentsOf: URL(fileURLWithPath: commands[1]))
+    let range = data.range(of: Data("data".utf8))!
+    var samples = data[(range.upperBound + 4)...].withUnsafeBytes { Array($0.bindMemory(to: Float.self)) }
+    if commands.count >= 5, let from = Double(commands[3]), let to = Double(commands[4]) {
+        samples = Array(samples[Int(from * 16_000)..<min(samples.count, Int(to * 16_000))])
+    }
+    let language = CohereAsrConfig.Language(rawValue: commands[2])!
+    Task {
+        let models = try await CohereLoader.shared.models()
+        let result = try await CoherePipeline().transcribe(audio: samples, models: models, language: language)
+        print(result.tokenIds.count, "tokens:", result.text)
+        exit(0)
     }
     RunLoop.main.run()
 }

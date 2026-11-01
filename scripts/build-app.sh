@@ -12,6 +12,8 @@ build=$(git -C "$root" rev-list --count HEAD)
 identities=$(security find-identity -p codesigning)
 identity=${SIGN_IDENTITY:-$(echo "$identities" | sed -n 's/.*"\(Developer ID Application: .*\)"/\1/p' | head -1)}
 if [ -z "$identity" ] && echo "$identities" | grep -q '"marierie Local Code Signing"'; then identity="marierie Local Code Signing"; fi
+# Releases must keep one identity, or every update loses the audio permission.
+if [ -z "$identity" ] && [ -n "${REQUIRE_IDENTITY:-}" ]; then echo "No signing certificate found."; exit 1; fi
 
 swift build -c release --arch arm64 --package-path "$root/app"
 bin=$(swift build -c release --arch arm64 --package-path "$root/app" --show-bin-path)
