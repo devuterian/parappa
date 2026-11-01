@@ -88,10 +88,10 @@ To try an engine on a 16 kHz float32 WAV (`--engine` is `nemotron`, `hybrid` for
 build/Parappa.app/Contents/MacOS/Parappa --engine hybrid --bench clip.wav
 ```
 
-Releases are published from this Mac. The signing certificate and the Sparkle key (keychain account `com.marierie.parappa`) live only in the keychain, so there's no CI release.
+Releases are published from this Mac. The signing certificate and the Sparkle private key (`~/.config/parappa/sparkle-ed25519.key`) live only on this Mac, so there's no CI release.
 
 ```sh
-scripts/release.sh 1.0.0
+scripts/release.sh 3.0.0
 ```
 
 ## How it works

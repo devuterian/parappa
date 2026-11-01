@@ -2,13 +2,15 @@
 # Publishes a release from this Mac: builds and signs Parappa.app, packs
 # Parappa.dmg, signs it for Sparkle, uploads it to a GitHub release and adds
 # it to docs/appcast.xml, which installed copies check for updates.
-# The code-signing certificate and Sparkle's EdDSA key (account
-# com.marierie.parappa) stay in this Mac's login keychain.
+# The code-signing certificate stays in this Mac's login keychain, and
+# Sparkle's EdDSA private key in ~/.config/parappa/sparkle-ed25519.key
+# (exported once from the keychain with `generate_keys --account
+# com.marierie.parappa -x`, mode 600; never commit it).
 #
 # Everything is built and signed before the tag is pushed, so a failure
 # leaves nothing published; run it again once fixed.
 #
-# usage: scripts/release.sh 1.0.0
+# usage: scripts/release.sh 3.0.0
 set -eu
 root=$(cd "$(dirname "$0")/.." && pwd)
 cd "$root"
@@ -37,7 +39,9 @@ if [ ! -x "$tools/bin/sign_update" ]; then
     echo "$sparkle_sha  $tools/sparkle.tar.xz" | shasum -a 256 -c - >/dev/null || { echo "Sparkle download doesn't match its checksum."; exit 1; }
     tar xJf "$tools/sparkle.tar.xz" -C "$tools"
 fi
-signature=$("$tools/bin/sign_update" --account com.marierie.parappa build/Parappa.dmg)
+key="$HOME/.config/parappa/sparkle-ed25519.key"
+[ -f "$key" ] || { echo "Sparkle key missing: $key"; exit 1; }
+signature=$("$tools/bin/sign_update" --ed-key-file "$key" build/Parappa.dmg)
 build=$(git rev-list --count "$tag")
 
 git push -q origin "$tag"

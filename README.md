@@ -88,10 +88,10 @@ open build/Parappa.app
 build/Parappa.app/Contents/MacOS/Parappa --engine hybrid --bench clip.wav
 ```
 
-릴리스는 이 Mac에서 직접 올려요. 서명 인증서랑 Sparkle 키(키체인 계정 `com.marierie.parappa`)가 키체인에만 있어서 CI에서는 안 돌려요.
+릴리스는 이 Mac에서 직접 올려요. 서명 인증서랑 Sparkle 개인키(`~/.config/parappa/sparkle-ed25519.key`)가 이 맥에만 있어서 CI에서는 안 돌려요.
 
 ```sh
-scripts/release.sh 1.0.0
+scripts/release.sh 3.0.0
 ```
 
 ## 동작 방식

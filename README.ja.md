@@ -88,10 +88,10 @@ open build/Parappa.app
 build/Parappa.app/Contents/MacOS/Parappa --engine hybrid --bench clip.wav
 ```
 
-リリースはこの Mac から直接公開します。署名証明書と Sparkle の鍵（キーチェーンのアカウント `com.marierie.parappa`）はキーチェーンにしかないため、CI では実行しません。
+リリースはこの Mac から直接公開します。署名証明書と Sparkle の秘密鍵（`~/.config/parappa/sparkle-ed25519.key`）はこの Mac にしかないため、CI では実行しません。
 
 ```sh
-scripts/release.sh 1.0.0
+scripts/release.sh 3.0.0
 ```
 
 ## 仕組み
