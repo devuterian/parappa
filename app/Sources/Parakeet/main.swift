@@ -11,28 +11,33 @@ enum Control {
     static let usage = "usage: Parappa status | captions on|off"
 }
 
-/// Which speech model to run: the default Nemotron streaming ASR, or
-/// Parakeet Ultra (--engine ultra) for side-by-side debugging.
+/// Which speech model to run: the one picked in Settings (Nemotron alone,
+/// or Nemotron corrected by Cohere Transcribe), or one named with
+/// `--engine nemotron|hybrid|ultra` for side-by-side debugging.
 enum EngineKind: String {
-    case nemotron, ultra
+    case nemotron, ultra, hybrid
 
-    static let current: EngineKind = {
+    static let override: EngineKind? = {
         let args = Array(CommandLine.arguments.dropFirst())
-        guard args.count >= 2, args[0] == "--engine" else { return .nemotron }
-        return EngineKind(rawValue: args[1]) ?? .nemotron
+        guard args.count >= 2, args[0] == "--engine" else { return nil }
+        return EngineKind(rawValue: args[1])
     }()
+
+    static var current: EngineKind { override ?? (Prefs.shared.model == .accurate ? .hybrid : .nemotron) }
 
     var modelName: String {
         switch self {
         case .nemotron: return "Nemotron 3.5"
         case .ultra: return "Parakeet Ultra"
+        case .hybrid: return "Nemotron 3.5 + Cohere Transcribe"
         }
     }
 
-    func make(rehearseFirstLaunch: Bool, onEvent: @escaping (EngineEvent) -> Void) -> Engine {
+    func make(rehearseFirstLaunch: Bool, bench: Bool = false, onEvent: @escaping (EngineEvent) -> Void) -> Engine {
         switch self {
         case .nemotron: return NemotronEngine(rehearseFirstLaunch: rehearseFirstLaunch, onEvent: onEvent)
         case .ultra: return UltraEngine(rehearseFirstLaunch: rehearseFirstLaunch, onEvent: onEvent)
+        case .hybrid: return HybridEngine(rehearseFirstLaunch: rehearseFirstLaunch, waitForRefiner: bench, onEvent: onEvent)
         }
     }
 }
@@ -53,6 +58,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
     private lazy var updater = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: self)
     private var engine: Engine?
+    private var engineKind = EngineKind.current
+    /// Whether captions start once the model is ready: not after a model
+    /// switch while they were off.
+    private var resumeListening = true
+    private lazy var settings = SettingsWindow(translator: translator)
     private var onboarding: Onboarding?   // set while the first-launch window is open
     private var onboardingWindow: OnboardingWindow?
     private var status = String(localized: "Loading speech model…")
@@ -68,7 +78,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
     private var engineTag: String {
-        EngineKind.current == .ultra ? " [Parakeet Ultra]" : ""
+        EngineKind.override == .ultra ? " [Parakeet Ultra]" : ""
     }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
@@ -96,6 +106,35 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         DistributedNotificationCenter.default().addObserver(forName: Control.command, object: nil, queue: .main) { [weak self] note in
             self?.run(command: note.object as? String ?? "")
         }
+        followModelChoice()
+    }
+
+    /// Restarts the engine when another model is picked in Settings.
+    private func followModelChoice() {
+        withObservationTracking { _ = Prefs.shared.model } onChange: { [weak self] in
+            DispatchQueue.main.async {
+                guard let self else { return }
+                self.followModelChoice()
+                if EngineKind.current != self.engineKind { self.switchModel() }
+            }
+        }
+    }
+
+    private func switchModel() {
+        resumeListening = listening || engine == nil
+        if listening { stopListening() }
+        engine?.stop()
+        engine = nil
+        ready = false
+        captions.clear()
+        startEngine()
+    }
+
+    @objc private func showSettings() {
+        // The box shows sample text while Settings is open, captions on or off.
+        settings.onClose = { [weak self] in if self?.listening == false { self?.panel.orderOut(nil) } }
+        settings.show()
+        panel.orderFrontRegardless()
     }
 
     func applicationWillTerminate(_ notification: Notification) {
@@ -140,6 +179,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     func menuNeedsUpdate(_ menu: NSMenu) {
         menu.removeAllItems()
         menu.addItem(withTitle: statusLine + engineTag, action: nil, keyEquivalent: "")
+        if engineKind == .hybrid, ready, let line = RefinerStatus.shared.line {
+            menu.addItem(withTitle: line, action: nil, keyEquivalent: "")
+        }
         if engine == nil {
             menu.addItem(withTitle: String(localized: "Try Again"), action: #selector(startEngine), keyEquivalent: "")
         } else if listening, AudioPermission.status == .denied {
@@ -164,6 +206,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         menu.addItem(.separator())
         let login = menu.addItem(withTitle: String(localized: "Open at Login"), action: #selector(toggleOpenAtLogin), keyEquivalent: "")
         login.state = SMAppService.mainApp.status == .enabled ? .on : .off
+        menu.addItem(withTitle: String(localized: "Settings…"), action: #selector(showSettings), keyEquivalent: ",")
         let update = menu.addItem(withTitle: String(localized: "Check for Updates…"), action: #selector(SPUStandardUpdaterController.checkForUpdates(_:)), keyEquivalent: "")
         update.target = updater
         menu.addItem(.separator())
@@ -183,7 +226,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             status = String(localized: "Ready")
             onboarding?.model = .ready
             // Captions start once the welcome window is done with.
-            if onboarding == nil { startListening() }
+            if onboarding == nil, resumeListening, !listening { startListening() }
         case .partial(let text):
             if translator.hear(text) { captions.clear() }  // a fresh box when the language flips
             captions.update(text)
@@ -207,7 +250,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         guard engine == nil else { return }
         status = String(localized: "Loading speech model…")
         onboarding?.model = .waiting
-        engine = EngineKind.current.make(rehearseFirstLaunch: rehearse) { [weak self] event in self?.handle(event) }
+        engineKind = EngineKind.current
+        engine = engineKind.make(rehearseFirstLaunch: rehearse) { [weak self] event in self?.handle(event) }
         updateIcon()
     }
 
@@ -219,6 +263,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     @objc private func toggleListening() {
         listening ? stopListening() : startListening()
+        resumeListening = listening
     }
 
     private func startListening() {
@@ -336,7 +381,8 @@ if commands.count == 2, commands[0] == "--bench" {
     guard !pcm.isEmpty else { print("no data chunk in", commands[1]); exit(2) }
     let started = Date()
     var engine: Engine?
-    engine = EngineKind.current.make(rehearseFirstLaunch: false) { event in
+    HybridEngine.verbose = true
+    engine = EngineKind.current.make(rehearseFirstLaunch: false, bench: true) { event in
         let t = String(format: "%5.2f", Date().timeIntervalSince(started))
         switch event {
         case .downloading, .preparing: break

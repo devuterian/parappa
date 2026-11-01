@@ -193,6 +193,10 @@ final class Translator {
 /// A floating, draggable caption box that stays above
 /// other windows, including full-screen apps.
 final class CaptionPanel: NSPanel {
+    private let prefs = Prefs.shared
+    /// Set while the panel is moved by code, so only the user's drags count as custom placement.
+    private var positioning = false
+
     init(captions: Captions, translator: Translator, onClose: @escaping () -> Void, onCopy: @escaping () -> Void) {
         super.init(contentRect: .zero, styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
         isFloatingPanel = true
@@ -204,18 +208,74 @@ final class CaptionPanel: NSPanel {
         isMovableByWindowBackground = true
         hidesOnDeactivate = false
 
-        let screen = NSScreen.main?.visibleFrame ?? .init(x: 0, y: 0, width: 1440, height: 900)
-        let width = min(900, screen.width * 0.7)
-        let height: CGFloat = 150
-        setFrame(.init(x: screen.midX - width / 2, y: screen.minY + 60, width: width, height: height), display: false)
-        setFrameAutosaveName("Captions")  // remember where it was dragged to
-
         let host = NSHostingView(rootView: CaptionView(captions: captions, translator: translator, onClose: onClose, onCopy: onCopy))
         host.sizingOptions = []
         contentView = host
+
+        follow()
+        NotificationCenter.default.addObserver(forName: NSWindow.didMoveNotification, object: self, queue: .main) { [weak self] _ in
+            self?.dragged()
+        }
+        NotificationCenter.default.addObserver(forName: NSApplication.didChangeScreenParametersNotification, object: nil, queue: .main) { [weak self] _ in
+            self?.layout()
+        }
     }
 
     override var canBecomeKey: Bool { false }
+
+    /// Lays the panel out again whenever a setting it depends on changes.
+    private func follow() {
+        withObservationTracking { layout() } onChange: { [weak self] in
+            DispatchQueue.main.async { self?.follow() }
+        }
+    }
+
+    /// Tall enough for either layout (captions alone, or a translation over
+    /// its original), so the box doesn't jump when translation starts.
+    private var boxHeight: CGFloat {
+        let main = prefs.lineHeight(size: prefs.mainSize)
+        let original = prefs.lineHeight(size: prefs.originalSize)
+        let alone = main * 3 + (main * 0.3).rounded()
+        let paired = main * 2 + (main * 0.3).rounded() + 6 + original * 2 + (original * 0.3).rounded()
+        return max(alone, paired) + 24
+    }
+
+    private func layout() {
+        ignoresMouseEvents = prefs.locked
+        guard let screen = prefs.screen?.visibleFrame else { return }
+        // Wider for larger text, so a line still holds a sentence's worth.
+        let width = min(screen.width * 0.9, min(900, screen.width * 0.7) * max(1, prefs.mainSize / 22))
+        let height = boxHeight + 8
+        var origin: CGPoint
+        switch prefs.placement {
+        case .bottom:
+            origin = .init(x: screen.midX - width / 2, y: screen.minY + 60)
+        case .top:
+            origin = .init(x: screen.midX - width / 2, y: screen.maxY - height - 40)
+        case .custom:
+            // Saved as where the box's bottom centre sits, as fractions of the screen.
+            let x = UserDefaults.standard.object(forKey: "customX") as? Double ?? 0.5
+            let y = UserDefaults.standard.object(forKey: "customY") as? Double ?? 0
+            origin = .init(x: screen.minX + screen.width * x - width / 2, y: screen.minY + screen.height * y)
+        }
+        origin.x = min(max(origin.x, screen.minX), screen.maxX - width)
+        origin.y = min(max(origin.y, screen.minY), screen.maxY - height)
+        let frame = CGRect(origin: origin, size: .init(width: width, height: height)).integral
+        guard frame != self.frame else { return }
+        positioning = true
+        setFrame(frame, display: true)
+        positioning = false
+    }
+
+    /// The user dragged the box: it stays there, on whichever screen it was dropped on.
+    private func dragged() {
+        guard !positioning, let screen else { return }
+        let visible = screen.visibleFrame
+        UserDefaults.standard.set((frame.midX - visible.minX) / visible.width, forKey: "customX")
+        UserDefaults.standard.set((frame.minY - visible.minY) / visible.height, forKey: "customY")
+        if prefs.screenName != screen.localizedName { prefs.screenName = screen.localizedName }
+        if prefs.placement != .custom { prefs.placement = .custom }
+    }
 }
 
 struct CaptionView: View {
@@ -225,23 +285,37 @@ struct CaptionView: View {
     var onClose: (() -> Void)?
     var onCopy: (() -> Void)?
     @State private var hovering = false
+    private let prefs = Prefs.shared
 
-    private var translation: Captions? { translator?.target == nil ? nil : translator?.output }
+    /// Speech already in the language translated into: shown as heard when
+    /// `showNative` is on, else the box hides.
+    private var native: Bool { translator?.target != nil && translator?.hearingNative == true }
+    private var translation: Captions? { translator?.target == nil || native ? nil : translator?.output }
     private var isEmpty: Bool { captions.isEmpty && translation?.isEmpty ?? true }
-    private var shown: Bool { !isEmpty && !(translation != nil && translator?.hearingNative == true) }
+    /// With the settings window open and nothing being said, sample text
+    /// stands in, so size, font and place can be judged and dragged.
+    private var previewing: Bool { prefs.previewing && onClose != nil && isEmpty }
+    private var shown: Bool { previewing || (!isEmpty && !(native && !prefs.showNative)) }
 
     var body: some View {
         VStack {
-            Spacer(minLength: 0)
+            if prefs.placement != .top { Spacer(minLength: 0) }
             if shown {
                 HStack(alignment: .center, spacing: 14) {
                     // Translating: the translation large on top, the original live below.
                     VStack(spacing: 6) {
-                        if let translation {
-                            CaptionText(captions: translation, size: 22, lines: 2, opacity: 1)
-                            CaptionText(captions: captions, size: 15, lines: 2, opacity: 0.7)
+                        if previewing {
+                            if translator?.target != nil {
+                                CaptionText(captions: Self.sampleTranslation, size: prefs.mainSize, lines: 2, opacity: 1)
+                                CaptionText(captions: Self.sampleOriginal, size: prefs.originalSize, lines: 2, opacity: 0.7)
+                            } else {
+                                CaptionText(captions: Self.sampleTranslation, size: prefs.mainSize, lines: 3, opacity: 1)
+                            }
+                        } else if let translation {
+                            CaptionText(captions: translation, size: prefs.mainSize, lines: 2, opacity: 1)
+                            CaptionText(captions: captions, size: prefs.originalSize, lines: 2, opacity: 0.7)
                         } else {
-                            CaptionText(captions: captions, size: 22, lines: 3, opacity: 1)
+                            CaptionText(captions: captions, size: prefs.mainSize, lines: 3, opacity: 1)
                         }
                     }
                     if let onClose, let onCopy, let translator {
@@ -277,9 +351,19 @@ struct CaptionView: View {
                 .background(.black.opacity(0.72), in: .rect(cornerRadius: 14))
                 .transition(.opacity)
             }
+            if prefs.placement == .top { Spacer(minLength: 0) }
         }
         .animation(.easeOut(duration: 0.3), value: shown)
         .translationTask(translator?.configuration) { session in await translator?.run(session) }
+    }
+
+    private static let sampleTranslation = sample(String(localized: "Captions will look like this. Drag the box to move it."))
+    private static let sampleOriginal = sample("Captions will look like this. Drag the box to move it.")
+
+    private static func sample(_ text: String) -> Captions {
+        let captions = Captions()
+        captions.lock(text)
+        return captions
     }
 }
 
@@ -291,14 +375,14 @@ private struct CaptionText: View {
     let lines: CGFloat
     let opacity: Double
     @State private var lift: CGFloat = 0
-    private var lineHeight: CGFloat { (size * 1.19).rounded() }  // SF and Korean; CJK sets tighter
+    private var lineHeight: CGFloat { Prefs.shared.lineHeight(size: size) }
     private var fade: CGFloat { (lineHeight * 0.3).rounded() }
 
     var body: some View {
         let visible = captions.visible
         (Text(visible.locked).foregroundStyle(.white.opacity(opacity))
          + Text(visible.partial).foregroundStyle(.white.opacity(opacity * 0.6)))
-            .font(.system(size: size, weight: .semibold))
+            .font(Prefs.shared.font(size: size))
             .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)
             // When a new line wraps in, start it one line lower and glide

@@ -23,7 +23,7 @@ extension Engine {
 /// chunk is encoded once and emitted tokens are never revised, so there is no
 /// re-transcription loop at all.
 final class NemotronEngine: Engine {
-    private static let chunk = 8_960     // 560 ms
+    private let chunk: Int               // 8 960 samples: 560 ms
     private static let pauseChunks = 2   // chunks without new tokens that end an utterance
 
     private let lock = NSLock()
@@ -32,8 +32,16 @@ final class NemotronEngine: Engine {
 
     /// `rehearseFirstLaunch` plays a fake model download and the first-time
     /// preparation pause before loading the real (cached) model.
-    init(rehearseFirstLaunch: Bool = false, onEvent: @escaping (EngineEvent) -> Void) {
-        let emit = { (event: EngineEvent) in DispatchQueue.main.async { onEvent(event) } }
+    convenience init(rehearseFirstLaunch: Bool = false, onEvent: @escaping (EngineEvent) -> Void) {
+        self.init(rehearseFirstLaunch: rehearseFirstLaunch) { event, _ in onEvent(event) }
+    }
+
+    /// Also tells, with each event, how many samples had been heard when it
+    /// was emitted (HybridEngine places Nemotron's words in the audio by it).
+    init(rehearseFirstLaunch: Bool = false, chunkMs: Int = 560, onTimedEvent: @escaping (EngineEvent, Int) -> Void) {
+        chunk = 16 * chunkMs
+        let emitAt = { (event: EngineEvent, at: Int) in DispatchQueue.main.async { onTimedEvent(event, at) } }
+        let emit = { (event: EngineEvent) in emitAt(event, 0) }
         task = Task.detached(priority: .userInitiated) { [weak self] in
             do {
                 if rehearseFirstLaunch {
@@ -43,14 +51,14 @@ final class NemotronEngine: Engine {
                     }
                 }
                 let dir = try await StreamingNemotronMultilingualAsrManager.downloadVariant(
-                    languageCode: "auto", chunkMs: 560,
+                    languageCode: "auto", chunkMs: chunkMs,
                     progressHandler: { emit(.downloading($0.fractionCompleted)) })
                 emit(.preparing)
                 if rehearseFirstLaunch { try await Task.sleep(for: .seconds(10)) }  // really ~1 min, first time only
                 let asr = StreamingNemotronMultilingualAsrManager()
                 try await asr.loadModels(from: dir)
                 emit(.ready)
-                try await self?.run(asr, emit: emit)
+                try await self?.run(asr, emit: emitAt)
             } catch is CancellationError {
             } catch {
                 emit(.exited(error.localizedDescription))
@@ -66,8 +74,10 @@ final class NemotronEngine: Engine {
 
     func stop() { task?.cancel() }
 
-    private func run(_ asr: StreamingNemotronMultilingualAsrManager, emit: @escaping (EngineEvent) -> Void) async throws {
-        let chunk = Self.chunk
+    private func run(_ asr: StreamingNemotronMultilingualAsrManager, emit emitAt: @escaping (EngineEvent, Int) -> Void) async throws {
+        let chunk = self.chunk
+        var heard = 0       // samples taken from the stream so far
+        let emit = { (event: EngineEvent) in emitAt(event, heard) }
         var pending: [Float] = []
         var committed = 0   // characters of the running transcript already locked in
         var shown = ""
@@ -85,6 +95,7 @@ final class NemotronEngine: Engine {
             }
             let samples = Array(pending.prefix(chunk))
             pending.removeFirst(chunk)
+            heard += chunk
 
             // Long digital silence with everything locked in: start a fresh
             // stream (bounds the running transcript) and skip the model.
